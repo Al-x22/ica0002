@@ -3,3 +3,11 @@
     hosts: all
     roles:
       - test_connection
+      
+  - name: Web Server
+    hosts: web_servers
+    become: y
+    roles:
+      - users
+      - nginx
+    

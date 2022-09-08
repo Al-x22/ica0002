@@ -1,0 +1,10 @@
+- name: Update the repository cache and update package "nginx" to latest version using default release squeeze-backport
+  ansible.builtin.apt:
+    name: nginx=1.18.0-0ubuntu1.3
+    state: present
+    update_cache: yes
+    
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: /home/alejandro/ica0002/roles/nginx/files/index.html
+    dest: /var/www/html/index.html
