@@ -1,0 +1,9 @@
+server {
+	listen 80 default_server;
+	server_name ubuntu@193.40.156.67:3322;
+
+	location / {
+		uwsgi_pass localhost:5000;
+		include uwsgi_params;
+	}
+}

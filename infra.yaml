@@ -8,6 +8,6 @@
     hosts: web_servers
     become: y
     roles:
-      - users
+      - agama
+      - uwsgi
       - nginx
-    

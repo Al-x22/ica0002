@@ -1,0 +1,32 @@
+---
+
+- name: Add the user 'uwsgi'
+  ansible.builtin.user:
+    name: uwsgi
+    comment: uwsgi user creation
+    
+- name: Install uwsgi
+  ansible.builtin.apt:
+    name: uwsgi
+    update_cache: yes
+ 
+- name: Install uwsgi-plugin-python3
+  ansible.builtin.apt:
+    name: uwsgi-plugin-python3
+    update_cache: yes
+    
+- name: Copy file agama.ini
+  ansible.builtin.copy:
+    src: agama.ini
+    dest: /etc/uwsgi/apps-enabled/agama.ini
+    owner: agama
+  notify: restart uwsgi
+    
+- name: Ensure uwsgi is always started
+  ansible.builtin.service:
+    name: uwsgi
+    state: started
+  
+  
+       
+
