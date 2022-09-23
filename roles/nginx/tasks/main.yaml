@@ -1,8 +1,6 @@
 - name: Update the repository cache and update package "nginx" to latest version using default release squeeze-backport
   ansible.builtin.apt:
     name: nginx
-    update_cache: yes
-    
     
 - name: Nginx configuration
   ansible.builtin.copy:

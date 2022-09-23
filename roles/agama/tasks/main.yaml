@@ -13,10 +13,10 @@
     
 - name: Install FLask
   ansible.builtin.apt:
-    name: python3-flask-sqlalchemy
-    state: latest
-    update_cache: yes
-    
+    name: 
+      - python3-flask-sqlalchemy
+      - python3-pymysql
+
 - name: Install agama
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/hudolejev/agama/master/agama.py

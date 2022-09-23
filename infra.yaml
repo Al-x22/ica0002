@@ -1,4 +1,17 @@
 ---
+
+  - name: Init
+    hosts: all
+    become: y
+    roles:
+      - init
+      
+  - name: Database server
+    hosts: db_servers
+    become: y
+    roles:
+      - mysql
+  
   - name: Ansible connection test
     hosts: all
     roles:
