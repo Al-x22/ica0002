@@ -4,7 +4,6 @@ Repository for IT Infrastructure
 Creating commit to see if Virtual Machine Works
 
 
-
 # Helpful Commands
 
 - service <service> status
