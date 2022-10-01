@@ -1,7 +1,7 @@
 # ica0002
 Repository for IT Infrastructure
 
-Creating commit to see if Virtual Machine Works
+Creating commit to see if Virtual Machine Works.
 
 
 # Helpful Commands
@@ -14,3 +14,5 @@ Creating commit to see if Virtual Machine Works
 - sudo rndc reload 
 - named-checonf // To check syntax of bind9
 - named_checkzone // For zone files
+
+
