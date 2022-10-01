@@ -1,0 +1,4 @@
+zone "{{ startup_name }}" {
+    type primary;
+    file "db.alba.pz.j2";
+};

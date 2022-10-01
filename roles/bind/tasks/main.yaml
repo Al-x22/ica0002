@@ -1,0 +1,31 @@
+---
+
+- name: Install Bind9
+  ansible.builtin.apt:
+    name: bind9
+    
+- name: Bind is started
+  ansible.builtin.service:
+    name: bind9
+    enabled: yes
+    state: started
+ 
+- name: Upload bind9 configuration
+  ansible.builtin.template:
+    src: named.conf.options
+    dest: /etc/bind/named.conf.options
+  notify: restart bind9
+  
+- name: Upload bind9 local configuration
+  ansible.builtin.template:
+    src: named.conf.local
+    dest: /etc/bind/named.conf.local
+  notify: restart bind9
+  
+- name: Upload bind9 local db configuration
+  ansible.builtin.template:
+    src: db.alba.pz.j2
+    dest: /var/lib/bind/db.alba.pz.j2
+  notify: Restart dns zone
+
+    

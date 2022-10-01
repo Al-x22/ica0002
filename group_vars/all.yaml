@@ -1,4 +1,4 @@
-mysql_host: 192.168.43.137
+mysql_host: groups['dns_server'][0]
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -9,3 +9,18 @@ mysql_password: !vault |
           3431313465613439360a623330643965376136626464376430343332613033633536323139366363
           3964
 
+# Do not change
+default_user: ubuntu
+
+# dnsvars
+startup_name: alba.pz
+dns_server: groups['dns_server'][0]
+
+allowed_addresses:
+  -  192.168.42.0/23
+  -  127.0.0.0/8
+
+forwarders:
+  -  1.1.1.1
+  -  8.8.8.8
+  

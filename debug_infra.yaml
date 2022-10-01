@@ -1,0 +1,7 @@
+---
+  - name: Testing debug
+    hosts: all
+    tasks:
+      - debug:
+          var: groups['dns_server'][0]
+      

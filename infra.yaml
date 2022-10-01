@@ -10,7 +10,9 @@
     hosts: db_servers
     become: y
     roles:
+      - bind
       - mysql
+      
   
   - name: Ansible connection test
     hosts: all

@@ -1,0 +1,9 @@
+---
+
+- name: restart bind9
+  ansible.builtin.service:
+    name: bind9
+    state: restarted
+  
+- name: Restart dns zone
+  ansible.builtin.command: sudo rndc reload

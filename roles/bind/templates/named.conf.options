@@ -1,0 +1,22 @@
+// Subnets allowed
+acl corpnets { {% for n in allowed_addresses %}{{n}}; {% endfor %} };
+options {
+	directory "/var/lib/bind";
+	
+	allow-query { 
+	      corpnets; 
+	};
+
+
+	 forwarders {
+	      {% for n in forwarders -%}
+              {{n}};
+              {% endfor %}
+	 };
+
+
+	dnssec-validation no;
+
+	listen-on-v6 { any; };
+};
+
