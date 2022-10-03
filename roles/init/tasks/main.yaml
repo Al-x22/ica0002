@@ -4,7 +4,4 @@
   ansible.builtin.apt:
     cache_valid_time: 86400
     
-- name: Update resolv.conf
-  ansible.builtin.template:
-    src: resolv.conf
-    dest: /etc/resolv.conf
+

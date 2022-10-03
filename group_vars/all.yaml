@@ -14,7 +14,6 @@ default_user: ubuntu
 
 # dnsvars
 startup_name: alba.pz
-dns_server: groups['dns_server'][0]
 
 allowed_addresses:
   -  192.168.42.0/23

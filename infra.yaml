@@ -5,15 +5,25 @@
     become: y
     roles:
       - init
-      
+  
+  - name: DNS Bind
+    hosts: dns_server
+    become: y
+    roles:
+      - bind
+  
+  - name: Resolve
+    hosts: all
+    become: y
+    roles:
+      - dns_change
+          
   - name: Database server
     hosts: db_servers
     become: y
     roles:
-      - bind
       - mysql
       
-  
   - name: Ansible connection test
     hosts: all
     roles:
