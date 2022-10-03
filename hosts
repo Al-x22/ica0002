@@ -8,5 +8,8 @@ Al-x22-2
 [dns_server]
 Al-x22-2
 
+[prometheus_server]
+Al-x22-2
+
 [web_servers]
 Al-x22-1

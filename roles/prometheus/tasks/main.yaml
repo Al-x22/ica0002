@@ -1,0 +1,24 @@
+- name: Install prometheus
+  ansible.builtin.apt:
+    name: prometheus
+
+- name: Ensure prometheus is always started please
+  ansible.builtin.service:
+    name: prometheus
+    enabled: yes
+    state: started
+
+- name: Upload prometheus environment var conf
+  ansible.builtin.template:
+    src: prometheus
+    dest: /etc/default/prometheus
+  notify: restart prometheus
+
+- name: Upload prometheus configuration
+  ansible.builtin.template:
+    src: prometheus.yml
+    dest: /etc/prometheus/prometheus.yml
+  notify: restart prometheus
+
+
+    

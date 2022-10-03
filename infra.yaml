@@ -5,6 +5,15 @@
     become: y
     roles:
       - init
+      - node_exporter
+
+  - name: Prometheus
+    hosts: prometheus_server
+    become: y
+    roles:
+      - nginx
+      - prometheus
+    tags: prometheus
   
   - name: DNS Bind
     hosts: dns_server

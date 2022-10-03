@@ -3,5 +3,7 @@
     hosts: all
     tasks:
       - debug:
-          var: groups['dns_server'][0]
+          var: 
+          - hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+          - hostvars[inventory_hostname]['ansible_port']
       

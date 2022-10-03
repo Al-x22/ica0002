@@ -1,0 +1,12 @@
+---
+
+- name: Install node_exporters
+  ansible.builtin.apt:
+    name: prometheus-node-exporter
+
+- name: Ensure node_exporters is always started please
+  ansible.builtin.service:
+    name: prometheus-node-exporter
+    enabled: yes
+    state: started
+    
