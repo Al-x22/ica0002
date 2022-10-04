@@ -25,5 +25,5 @@ scrape_configs:
     static_configs:
       - targets:
       {% for vm in groups['all'] %}
-      - {{ vm }}:9100
+      - {{ vm }}:{{ linux_port }}
       {% endfor %}

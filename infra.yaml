@@ -6,12 +6,12 @@
     roles:
       - init
       - node_exporter
+      - nginx
 
   - name: Prometheus
     hosts: prometheus_server
     become: y
     roles:
-      - nginx
       - prometheus
     tags: prometheus
   
@@ -44,4 +44,3 @@
     roles:
       - agama
       - uwsgi
-      - nginx

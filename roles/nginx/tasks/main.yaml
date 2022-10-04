@@ -3,7 +3,7 @@
     name: nginx
     
 - name: Nginx configuration
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: default
     dest: /etc/nginx/sites-enabled/default
   notify: restart nginx

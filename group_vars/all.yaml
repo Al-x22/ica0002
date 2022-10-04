@@ -22,4 +22,7 @@ allowed_addresses:
 forwarders:
   -  1.1.1.1
   -  8.8.8.8
+
+# Port for all VMs for prometheus
+linux_port: 9100
   
