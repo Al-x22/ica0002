@@ -1,0 +1,23 @@
+---
+
+- name: Install mysql_exporters
+  ansible.builtin.apt:
+    name: prometheus-mysqld-exporter
+
+- name: Ensure mysql_exporters is always started please
+  ansible.builtin.service:
+    name: prometheus-mysqld-exporter
+    enabled: yes
+    state: started
+    
+- name: Upload prometheus-mysqld-exporter configuration
+  ansible.builtin.template:
+    src: .my.cnf.j2
+    dest: /var/lib/prometheus/.my.cnf
+  notify: restart prometheus-mysqld-exporter 
+  no_log: yes
+    
+    
+    
+    
+   

@@ -6,4 +6,10 @@
           var: 
           - hostvars[inventory_hostname]['ansible_default_ipv4']['address']
           - hostvars[inventory_hostname]['ansible_port']
+    
+  - name: show templating results
+    hosts: all
+    tasks:
+      - template: src=./roles/bind/templates/named.conf.options dest=/etc/bind/named.conf.options
+
       

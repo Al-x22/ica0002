@@ -2,15 +2,21 @@
   ansible.builtin.apt:
     name: nginx
     
-- name: Nginx configuration
+- name: Ensure nginx is always started please
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    
+- name: Nginx default configuration
   ansible.builtin.template:
     src: default
     dest: /etc/nginx/sites-enabled/default
   notify: restart nginx
     
-- name: Ensure nginx is always started please
-  ansible.builtin.service:
-    name: nginx
-    state: started
+- name: Nginx exporter configuration
+  ansible.builtin.template:
+    src: exporter
+    dest: /etc/nginx/sites-enabled/exporter
+  notify: restart nginx
   
   

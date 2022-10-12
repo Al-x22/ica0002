@@ -9,7 +9,18 @@ mysql_password: !vault |
           3431313465613439360a623330643965376136626464376430343332613033633536323139366363
           3964
 
-# Do not change
+#Sql-exporter user and password
+sql_exporter_user: exporter
+sql_exporter_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          66653765343734323236306265326331373664356533323861313863313235343165613130336639
+          6262326336313630326536343163393234306138396334340a646337623339616665653065326235
+          62616439393038343733656630363238336664333365313438663436323535323363663762356563
+          6235316132333732330a633839353230653734656561343966663365363263336461333361306432
+          3534
+
+
+# Do not change (For Bind)
 default_user: ubuntu
 
 # dnsvars
@@ -23,6 +34,22 @@ forwarders:
   -  1.1.1.1
   -  8.8.8.8
 
-# Port for all VMs for prometheus
+# Jobs for prometheus
+
 linux_port: 9100
+
+prometheus_jobs:
+  - name: linux
+    target_port: 9100
+    target_group: all
+  - name: bind9
+    target_port: 9119
+    target_group: dns_servers
+  - name: mysql
+    target_port: 9104
+    target_group: db_servers
+  - name: nginx
+    target_port: 9113
+    target_group: web_servers
+
   

@@ -1,0 +1,16 @@
+---
+
+- name: Install nginx exporter
+  ansible.builtin.apt:
+    name: prometheus-nginx-exporter
+
+- name: Ensure nginxxexporter is always started please
+  ansible.builtin.service:
+    name: prometheus-nginx-exporter
+    enabled: yes
+    state: started
+    
+    
+    
+    
+   

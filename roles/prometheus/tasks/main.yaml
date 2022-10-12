@@ -2,7 +2,7 @@
   ansible.builtin.apt:
     name: prometheus
 
-- name: Ensure prometheus is always started please
+- name: Ensure prometheus is always started 
   ansible.builtin.service:
     name: prometheus
     enabled: yes

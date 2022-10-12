@@ -3,44 +3,62 @@
   - name: Init
     hosts: all
     become: y
+    gather_facts: yes
     roles:
       - init
       - node_exporter
-      - nginx
-
-  - name: Prometheus
-    hosts: prometheus_server
-    become: y
-    roles:
-      - prometheus
-    tags: prometheus
-  
-  - name: DNS Bind
-    hosts: dns_server
-    become: y
-    roles:
+    tags: 
+      - ini
       - bind
+      
+  - name: Web Servers
+    hosts: web_servers
+    gather_facts: no
+    become: y
+    roles:
+      - nginx
+      - nginx_exporter
+    tags: nginx
+
+  - name: DNS Bind
+    hosts: dns_servers
+    gather_facts: no
+    become: y
+    roles:
+      - bind 
+      - bind_exporter
+    tags: bind
   
   - name: Resolve
     hosts: all
+    gather_facts: yes
     become: y
     roles:
       - dns_change
+      
+  - name: Prometheus
+    hosts: prometheus_servers
+    become: y
+    gather_facts: no
+    roles:
+      - prometheus
+    tags: prometheus
           
   - name: Database server
     hosts: db_servers
+    gather_facts: no
     become: y
     roles:
       - mysql
-      
-  - name: Ansible connection test
-    hosts: all
-    roles:
-      - test_connection
-      
-  - name: Web Server
-    hosts: web_servers
+      - mysql_exporter
+    tags: sql
+            
+  - name: Agama Server
+    hosts: agama_servers
+    gather_facts: no
     become: y
     roles:
       - agama
       - uwsgi
+    
+ 

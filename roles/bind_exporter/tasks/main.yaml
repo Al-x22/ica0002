@@ -1,0 +1,16 @@
+---
+
+- name: Install bind_exporter
+  ansible.builtin.apt:
+    name: prometheus-bind-exporter
+
+- name: Ensure bind_exporters is always started please
+  ansible.builtin.service:
+    name: prometheus-bind-exporter
+    enabled: yes
+    state: started
+    
+    
+    
+    
+   

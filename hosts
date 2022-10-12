@@ -1,14 +1,18 @@
-Al-x22-1 ansible_host=193.40.156.67 ansible_port=4722 ansible_ssh_user=ubuntu
-Al-x22-2 ansible_host=193.40.156.67 ansible_port=43122 ansible_ssh_user=ubuntu
+Al-x22-1 ansible_host=193.40.156.67 ansible_port=16022 ansible_ssh_user=ubuntu
+Al-x22-2 ansible_host=193.40.156.67 ansible_port=42622 ansible_ssh_user=ubuntu
 
 [web_servers]
 Al-x22-1
+Al-x22-2
 
 [db_servers]
 Al-x22-2
 
-[dns_server]
+[dns_servers]
 Al-x22-2
 
-[prometheus_server]
+[prometheus_servers]
 Al-x22-2
+
+[agama_servers]
+Al-x22-1

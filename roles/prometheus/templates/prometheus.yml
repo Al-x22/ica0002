@@ -20,10 +20,11 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: linux
-    # To handle VM
+  {% for n in prometheus_jobs %}    
+  - job_name: {{ n.name }}
     static_configs:
-      - targets:
-      {% for vm in groups['all'] %}
-      - {{ vm }}:{{ linux_port }}
+        - targets:
+      {% for vm in groups[n.target_group] %}
+      - {{ vm }}:{{ n.target_port }}
       {% endfor %}
+  {% endfor %}
