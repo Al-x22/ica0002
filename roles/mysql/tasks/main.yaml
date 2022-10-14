@@ -14,7 +14,7 @@
     name: mysql
     enabled: yes
     state: started
-
+    
 - name: Add python3-pymysql because it is required
   ansible.builtin.apt:
     name: python3-pymysql
@@ -32,10 +32,11 @@
     priv: "{{ mysql_database }}.*:ALL"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     
-- name: MySQL-exporter user
+- name: MySQL user for Exporter
   community.mysql.mysql_user:
     name: "{{ sql_exporter_user }}"
     password: "{{ sql_exporter_password }}"
     priv: "*.*:PROCESS,REPLICATION CLIENT,SELECT"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+    
     

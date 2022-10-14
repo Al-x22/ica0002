@@ -11,6 +11,14 @@
       - ini
       - bind
       
+  - name: Prometheus
+    hosts: prometheus_servers
+    become: y
+    gather_facts: no
+    roles:
+      - prometheus
+    tags: prometheus
+      
   - name: Web Servers
     hosts: web_servers
     gather_facts: no
@@ -35,14 +43,6 @@
     become: y
     roles:
       - dns_change
-      
-  - name: Prometheus
-    hosts: prometheus_servers
-    become: y
-    gather_facts: no
-    roles:
-      - prometheus
-    tags: prometheus
           
   - name: Database server
     hosts: db_servers
@@ -60,5 +60,12 @@
     roles:
       - agama
       - uwsgi
-    
+  
+  - name: Grafana
+    hosts: grafana_servers
+    become: y
+    gather_facts: no
+    roles:
+      - grafana
+    tags: grafana
  

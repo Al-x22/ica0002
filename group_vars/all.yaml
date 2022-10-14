@@ -10,7 +10,7 @@ mysql_password: !vault |
           3964
 
 #Sql-exporter user and password
-sql_exporter_user: exporter
+sql_exporter_user: prometheus-mysq
 sql_exporter_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           66653765343734323236306265326331373664356533323861313863313235343165613130336639
@@ -37,6 +37,7 @@ forwarders:
 # Jobs for prometheus
 
 linux_port: 9100
+prometheus_port: 9090
 
 prometheus_jobs:
   - name: linux
@@ -52,4 +53,14 @@ prometheus_jobs:
     target_port: 9113
     target_group: web_servers
 
+# Grafana
+
+grafana_user: alex22
+grafana_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31333765306662356437346365333133666563343831383839656638663735653636343162323533
+          6134393866633139396632666137643736626363653936300a386166613733336662616461306432
+          62393338313434353666363734306566646461613438343665646135393434326664656265623664
+          3637333636626664620a373136306262323161313864653631316263663866643762346463633530
+          3430
   

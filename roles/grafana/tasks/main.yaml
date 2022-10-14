@@ -1,0 +1,51 @@
+---
+
+- name: Add Grafana Apt signing key
+  ansible.builtin.apt_key:
+    url: https://packages.grafana.com/gpg.key
+    state: present
+    
+- name: Add Grafana repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb https://packages.grafana.com/enterprise/deb stable main
+    state: present
+    
+- name: Install grafana
+  ansible.builtin.apt:
+    name: grafana
+
+- name: Ensure grafana is always started please
+  ansible.builtin.service:
+    name: grafana-server
+    enabled: yes
+    state: started
+    
+- name: Upload grafana ini configuration
+  ansible.builtin.template:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
+  notify: restart grafana
+  no_log: yes
+  
+- name: Upload grafana data source
+  ansible.builtin.template:
+    src: prometheus_datasource.yaml
+    dest: /etc/grafana/provisioning/datasources/prometheus_datasource.yaml
+  notify: restart grafana
+
+- name: Create dashboard path
+  file:
+    path: var/lib/grafana/dashboards
+    state: directory  
+  
+- name: Copy file override.cnf
+  ansible.builtin.copy:
+    src: main.json
+    dest: /var/lib/grafana/dashboards/main.json
+  notify: restart grafana
+  
+- name: Upload grafana dashboard config
+  ansible.builtin.template:
+    src: prometheus_dashboard.yaml
+    dest: /etc/grafana/provisioning/dashboards/prometheus_dashboard.yaml
+  notify: restart grafana
