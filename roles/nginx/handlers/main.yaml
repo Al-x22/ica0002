@@ -4,3 +4,11 @@
   ansible.builtin.service:
     name: nginx
     state: restarted
+    
+- name: restart nginx&exporter
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: restarted
+  loop:
+    - nginx
+    - prometheus-nginx-exporter

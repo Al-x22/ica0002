@@ -17,6 +17,6 @@
   ansible.builtin.template:
     src: exporter
     dest: /etc/nginx/sites-enabled/exporter
-  notify: restart nginx
+  notify: restart nginx&exporter
   
   

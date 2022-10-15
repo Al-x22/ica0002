@@ -3,9 +3,7 @@
     hosts: all
     tasks:
       - debug:
-          var: 
-          - hostvars[inventory_hostname]['ansible_default_ipv4']['address']
-          - hostvars[inventory_hostname]['ansible_port']
+          var: ansible_hostname
     
   - name: show templating results
     hosts: all

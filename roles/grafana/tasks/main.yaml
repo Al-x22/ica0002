@@ -13,12 +13,6 @@
 - name: Install grafana
   ansible.builtin.apt:
     name: grafana
-
-- name: Ensure grafana is always started please
-  ansible.builtin.service:
-    name: grafana-server
-    enabled: yes
-    state: started
     
 - name: Upload grafana ini configuration
   ansible.builtin.template:
@@ -26,7 +20,13 @@
     dest: /etc/grafana/grafana.ini
   notify: restart grafana
   no_log: yes
-  
+
+- name: Ensure grafana is always started please
+  ansible.builtin.service:
+    name: grafana-server
+    enabled: yes
+    state: started
+      
 - name: Upload grafana data source
   ansible.builtin.template:
     src: prometheus_datasource.yaml
@@ -35,10 +35,10 @@
 
 - name: Create dashboard path
   file:
-    path: var/lib/grafana/dashboards
+    path: /var/lib/grafana/dashboards
     state: directory  
   
-- name: Copy file override.cnf
+- name: Copy file main dashboard
   ansible.builtin.copy:
     src: main.json
     dest: /var/lib/grafana/dashboards/main.json
