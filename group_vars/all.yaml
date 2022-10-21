@@ -38,6 +38,7 @@ forwarders:
 
 linux_port: 9100
 prometheus_port: 9090
+influxdb_port: 8086
 
 prometheus_jobs:
   - name: linux
@@ -52,6 +53,9 @@ prometheus_jobs:
   - name: nginx
     target_port: 9113
     target_group: web_servers
+  - name: influxdb
+    target_port: 9424
+    target_group: influxdb_servers
 
 # Grafana
 

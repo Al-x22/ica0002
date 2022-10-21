@@ -12,6 +12,7 @@ Creating commit to see if Virtual Machine Works.
 - ps ax |grep <service>
 - sudo ss -ntlp |grep <Id of service>
 - journalctl -u <service> --no-pager
+- cat <file_to_filter>.conf |grep -v  "^$\|^#\|^  #"
 
 ### Special Combo for web
 - service <service> status

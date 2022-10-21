@@ -1,0 +1,10 @@
+[Unit]
+Description=Ping Service used to automate ping requests to diverse addresses
+After=network-online.target
+
+[Service]
+User=pinger
+ExecStart=/usr/local/bin/pinger
+
+[Install]
+WantedBy=multi-user.target

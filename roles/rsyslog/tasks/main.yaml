@@ -1,0 +1,7 @@
+---
+
+- name: Add Telegraf rsyslog conf file
+  ansible.builtin.template:
+    dest: /etc/rsyslog.d/15-telegraf.conf
+    src: 15-telegraf.conf
+  notify: restart rsyslog

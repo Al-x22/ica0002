@@ -7,7 +7,7 @@
     
 - name: Add Grafana repository into sources list
   ansible.builtin.apt_repository:
-    repo: deb https://packages.grafana.com/enterprise/deb stable main
+    repo: deb https://packages.grafana.com/oss/deb stable main
     state: present
     
 - name: Install grafana
@@ -27,12 +27,12 @@
     enabled: yes
     state: started
       
-- name: Upload grafana data source
+- name: Upload grafana prometheus data source
   ansible.builtin.template:
-    src: prometheus_datasource.yaml
-    dest: /etc/grafana/provisioning/datasources/prometheus_datasource.yaml
+    src: datasources.yaml
+    dest: /etc/grafana/provisioning/datasources/datasources.yaml
   notify: restart grafana
-
+   
 - name: Create dashboard path
   file:
     path: /var/lib/grafana/dashboards
@@ -40,12 +40,13 @@
   
 - name: Copy file main dashboard
   ansible.builtin.copy:
-    src: main.json
-    dest: /var/lib/grafana/dashboards/main.json
+    src: dashboards/
+    dest: /var/lib/grafana/dashboards/
   notify: restart grafana
+
   
 - name: Upload grafana dashboard config
   ansible.builtin.template:
-    src: prometheus_dashboard.yaml
-    dest: /etc/grafana/provisioning/dashboards/prometheus_dashboard.yaml
+    src: dashboards.yaml
+    dest: /etc/grafana/provisioning/dashboards/dashboards.yaml
   notify: restart grafana

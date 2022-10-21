@@ -1,0 +1,10 @@
+[Unit]
+Description=Service to start influx_stats_exporter
+After=network-online.target
+
+[Service]
+User=prometheus
+ExecStart=/usr/local/bin/influx_stats_exporter_linux_amd64
+
+[Install]
+WantedBy=multi-user.target

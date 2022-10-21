@@ -1,0 +1,28 @@
+# config file version
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    uid: prometheus1
+    url: http://{{ groups['prometheus_servers'][0] }}:{{ prometheus_port }}/prometheus
+    version: 1
+    editable: false
+    
+  - name: influx:latency
+    type: influxdb
+    url: http://{{ groups['influxdb_servers'][0] }}:{{ influxdb_port }}
+    database: latency
+    uid: influxl1
+    
+  - name: influx:telegraf
+    type: influxdb
+    url: http://{{ groups['influxdb_servers'][0] }}:{{ influxdb_port }}
+    database: telegraf
+    uid: telegraf1
+    
+  
+  
+

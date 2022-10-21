@@ -1,0 +1,44 @@
+---
+
+- name: Install fping
+  ansible.builtin.apt:
+    name: fping
+      
+- name: Create user "pinger"
+  ansible.builtin.user:
+    name: pinger
+      
+- name: Add pinger shell to vm in /usr/local/bin
+  ansible.builtin.template:
+    dest: /usr/local/bin/pinger
+    src: pinger.sh
+    owner: pinger
+    group: pinger
+    mode: 0755
+    
+- name: Add Pinger Service
+  ansible.builtin.template:
+    dest: /etc/systemd/system/pinger.service
+    src: pinger.service
+     
+- name: Execute systemd reload to enable pinger service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+   
+- name: Create pinger conf dir
+  ansible.builtin.file:
+    path: /etc/pinger
+    state: directory
+     
+- name: Add pinger conf to vm
+  ansible.builtin.template:
+    dest: /etc/pinger/pinger.conf
+    src: pinger.conf
+  notify: restart pinger
+   
+- name: Start pinger uncodnitionally
+  ansible.builtin.service:
+    name: pinger
+    state: started
+    enabled: yes
+   

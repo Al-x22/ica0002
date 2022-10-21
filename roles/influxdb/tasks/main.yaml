@@ -1,0 +1,55 @@
+---
+
+- name: Download influxdb
+  ansible.builtin.get_url:
+    url: https://dl.influxdata.com/influxdb/releases/influxdb_1.8.10_amd64.deb
+    dest: /etc/influxdb_1.8.10_amd64.deb
+    mode: '0755'
+
+- name: Install influxDB
+  ansible.builtin.apt:
+    deb: /etc/influxdb_1.8.10_amd64.deb
+    
+- name: Add InfluxDB conf file
+  ansible.builtin.template:
+    dest: /etc/influxdb/influxdb.conf
+    src: influxdb.conf
+  notify: restart influxdb
+
+- name: Ensure influxdb is always started please
+  ansible.builtin.service:
+    name: influxdb
+    enabled: yes
+    state: started
+    
+# Influx Data Source for Grafana located in Grafana folder
+
+- name: Add Telegraf Apt signing key
+  ansible.builtin.apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+    
+- name: Add Telegraf repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb https://repos.influxdata.com/debian stable main
+    state: present
+    
+- name: Install Telegraf
+  ansible.builtin.apt:
+    name: telegraf
+    
+- name: Add Telegraf conf file
+  ansible.builtin.template:
+    dest: /etc/telegraf/telegraf.conf
+    src: telegraf.conf
+  notify: restart telegraf
+    
+- name: Ensure influxdb is always started please
+  ansible.builtin.service:
+    name: telegraf
+    enabled: yes
+    state: started
+    
+    
+    
+   

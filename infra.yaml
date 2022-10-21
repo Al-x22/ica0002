@@ -39,7 +39,7 @@
   
   - name: Resolve
     hosts: all
-    gather_facts: yes
+    gather_facts: no
     become: y
     roles:
       - dns_change
@@ -60,6 +60,24 @@
     roles:
       - agama
       - uwsgi
+      
+  - name: Rsyslog Remote Log
+    hosts: all
+    become: y
+    gather_facts: no
+    roles:
+      - rsyslog
+    tags: rsyslog
+  
+  - name: InfluxDB
+    hosts: influxdb_servers
+    become: y
+    gather_facts: yes
+    roles:
+      - influxdb
+      - pinger
+      - influxdb_exporter
+    tags: influxdb
   
   - name: Grafana
     hosts: grafana_servers

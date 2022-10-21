@@ -1,0 +1,28 @@
+---
+
+- name: Add Influxdb Exporter Service Binary file
+  ansible.builtin.copy:
+    dest: /usr/local/bin/influx_stats_exporter_linux_amd64
+    src: influx_stats_exporter_linux_amd64
+    
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /usr/local/bin/influx_stats_exporter_linux_amd64
+    owner: prometheus
+    group: prometheus
+    mode: '0744'
+    
+- name: Add Influxdb Exporter Service
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/prometheus-influxdb-stats-exporter.service
+    src: prometheus-influxdb-stats-exporter.service
+    
+- name: Execute systemd reload to enable influx exporter service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    
+- name: Start influx exporter uncodnitionally
+  ansible.builtin.service:
+    name: prometheus-influxdb-stats-exporter.service
+    state: started
+    enabled: yes
