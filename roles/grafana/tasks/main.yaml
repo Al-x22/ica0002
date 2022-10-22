@@ -40,7 +40,13 @@
   
 - name: Copy file main dashboard
   ansible.builtin.copy:
-    src: dashboards/
+    src: main.json
+    dest: /var/lib/grafana/dashboards/
+  notify: restart grafana
+  
+- name: Copy file syslog dashboard
+  ansible.builtin.copy:
+    src: syslog.json
     dest: /var/lib/grafana/dashboards/
   notify: restart grafana
 
