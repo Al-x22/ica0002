@@ -10,7 +10,7 @@ mysql_password: !vault |
           3964
 
 #Sql-exporter user and password
-sql_exporter_user: prometheus-mysq
+sql_exporter_user: mysq
 sql_exporter_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           66653765343734323236306265326331373664356533323861313863313235343165613130336639
@@ -34,6 +34,8 @@ forwarders:
   -  1.1.1.1
   -  8.8.8.8
 
+backup_server_ip: 192.168.42.132
+backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 # Jobs for prometheus
 
 linux_port: 9100
