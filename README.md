@@ -30,6 +30,6 @@ Creating commit to see if Virtual Machine Works.
 - named-checonf // To check syntax of bind9
 - named_checkzone // For zone files
 
-
+sudo su -l backup -s /bin/bash
 
 

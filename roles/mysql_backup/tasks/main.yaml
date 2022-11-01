@@ -1,0 +1,46 @@
+---
+
+- name: Ensure path to mysql backup exists
+  ansible.builtin.file:
+    path: /home/backup/mysql
+    owner: "{{ backup_user }}"
+    group: "{{ backup_user }}"
+    mode: '0755'
+    state: directory 
+    
+- name: MySQL user for backup
+  community.mysql.mysql_user:
+    name: "{{ backup_user }}"
+    password: "{{ mysql_backup_password }}"
+    host: "%"
+    priv: "{{ mysql_database }}.*:LOCK TABLES,SELECT"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    
+- name: Upload backup-mysql configuration
+  ansible.builtin.template:
+    src: .my.cnf
+    dest: /home/{{ backup_user }}/.my.cnf
+  no_log: yes
+  
+
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /home/{{ backup_user }}/.my.cnf
+    owner: "{{ backup_user }}"
+    group: "{{ backup_user }}"
+    mode: '0400'
+    
+- name: Ensure path to cron mysql-backup exists
+  ansible.builtin.file:
+    path: /etc/cron.d/mysql-backup
+    owner: root
+    group: root
+    mode: '0644'
+    state: touch
+ 
+- name: Upload cron backup-mysql
+  ansible.builtin.template:
+    src: mysql-backup
+    dest: /etc/cron.d/mysql-backup
+  no_log: yes
+ 

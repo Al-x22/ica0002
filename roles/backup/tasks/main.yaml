@@ -2,24 +2,45 @@
 
 - name: Add the user 'backup' with a specific uid and a primary group of 'admin'
   ansible.builtin.user:
-    name: backup
-    comment: backup
+    name: "{{ backup_user }}"
+    comment: "{{ backup_user }}"
     create_home: true
     group: admin
-    home: /home/backup
+    shell: /bin/bash
+    home: /home/{{ backup_user }}
     
 - name: Create a 2048-bit SSH key for user backup
   ansible.builtin.user:
-    name: backup
+    name: "{{ backup_user }}"
     generate_ssh_key: yes
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
     
-- name: Template a file to /home/backup/.ssh/known_hosts
+- name: Template a file to /home/{{ backup_user }}/.ssh/known_hosts
   ansible.builtin.template:
     src: known_hosts
-    dest: /home/backup/.ssh/known_hosts
-    owner: backup
-    group: backup
+    dest: /home/{{ backup_user }}/.ssh/known_hosts
+    owner: "{{ backup_user }}"
+    group: "{{ backup_user }}"
+    
+- name: Ensure path to mysql backup exists
+  ansible.builtin.file:
+    path: /home/{{ backup_user }}/influxdb
+    owner: "{{ backup_user }}"
+    group: "{{ backup_user }}"
+    mode: '0755'
+    state: directory 
+
+- name: Ensure path to backup restore exists
+  ansible.builtin.file:
+    path: /home/{{ backup_user }}/restore
+    owner: "{{ backup_user }}"
+    group: "{{ backup_user }}"
+    mode: '0755'
+    state: directory 
+    
+- name: Install Duplicity
+  ansible.builtin.apt:
+    name: duplicity
     
    

@@ -1,0 +1,4 @@
+0 0 * * *  backup  rm -rf /home/backup/influxdb/*
+2 0 * * *  backup  influxd backup -portable /home/backup/influxdb
+5 0 * * 0  backup  duplicity --no-encryption full /home/backup/influxdb/ rsync://Al-x22@backup/influxdb
+5 0 * * 1-6  backup  duplicity --no-encryption incremental /home/backup/influxdb/ rsync://Al-x22@backup/influxdb

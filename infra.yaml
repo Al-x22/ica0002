@@ -52,6 +52,7 @@
     roles:
       - mysql
       - mysql_exporter
+      - mysql_backup
     tags: sql
             
   - name: Agama Server
@@ -78,6 +79,7 @@
       - influxdb
       - pinger
       - influxdb_exporter
+      - influxdb_backup
     tags: influxdb
   
   - name: Grafana
