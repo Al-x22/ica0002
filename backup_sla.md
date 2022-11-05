@@ -14,10 +14,10 @@ This document provides backup information concerning the IT infrastructure devel
 
 ## Recovery Point Objective (RPO)
 
-
+Backups performed are incremental. One full backup is made every Sunday at the specified time below. Every day, except for Sunday, incremental backups are made.
 ```sh
 Backup update frequency: 24h
-Backup creation time: 12:00am
+Backup creation time: 10:00pm
 ```
 
 ## Versioning and Retention
