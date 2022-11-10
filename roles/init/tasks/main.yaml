@@ -6,4 +6,4 @@
 
 - name: Install certificates
   ansible.builtin.apt:
-    name: ca-certificates
+    name: ca-certificates>=20211000*

@@ -27,10 +27,17 @@ mysql_backup_password: !vault |
           35633866336132386437303831326434373831393832613762323130343634626365653530303334
           3130383635336161330a663764313439306264306337353364323261343235326666616330653361
           6433
-          
-# Do not change (For Bind)
+sql_repl_user: replication
+sql_repl_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          66303438616632393034343561303435316166353133616436626339376236666130303962333065
+          3337616638303336313732326233623564323135306435370a633966326534346437363433333861
+          33643665333533383532346164393232393261363034323039633236666663383135343838313033
+          3664383966303363350a653132616435386464363262623939663464353132333835303564363266
+          3537
+# For Bind
 default_user: ubuntu
-
+node_id: "{{ (ansible_port / 100) | int }}"
 # dnsvars
 startup_name: alba.pz
 
@@ -44,6 +51,7 @@ forwarders:
 
 backup_server_ip: 192.168.42.132
 backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
+mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
 # Jobs for prometheus
 
 linux_port: 9100

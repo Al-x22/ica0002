@@ -4,7 +4,7 @@
     name: mysql-server
 
 - name: Copy file override.cnf
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: override.cnf
     dest: /etc/mysql/mysql.conf.d/override.cnf
   notify: restart mysql
@@ -23,7 +23,10 @@
   community.mysql.mysql_db:
     name: "{{ mysql_database }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
-
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
+  
 - name: MySQL user
   community.mysql.mysql_user:
     name: "{{ mysql_user }}"
@@ -39,4 +42,21 @@
     priv: "*.*:PROCESS,REPLICATION CLIENT,SELECT"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     
+- name: MySQL user for Replication
+  community.mysql.mysql_user:
+    name: "{{ sql_repl_user }}"
+    password: "{{ sql_repl_password }}"
+    host: "%"
+    priv: "*.*:REPLICATION SLAVE"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    
+- name: Add read only mode to secondary mysql server    
+  community.mysql.mysql_variables:
+    variable: read_only
+    value: "{{ 'OFF' if inventory_hostname == mysql_host else 'ON' }}"
+    mode: persist
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
     

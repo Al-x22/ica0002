@@ -53,7 +53,9 @@
       - mysql
       - mysql_exporter
       - mysql_backup
-    tags: sql
+    tags: 
+      - sql
+      - mx
             
   - name: Agama Server
     hosts: agama_servers
@@ -62,7 +64,9 @@
     roles:
       - agama
       - uwsgi
-      
+    tags: 
+      - agama
+      - mx
   - name: Rsyslog Remote Log
     hosts: all
     become: y

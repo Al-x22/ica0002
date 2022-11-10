@@ -20,8 +20,6 @@
   ansible.builtin.template:
     src: .my.cnf
     dest: /home/{{ backup_user }}/.my.cnf
-  no_log: yes
-  
 
 - name: Change file ownership, group and permissions
   ansible.builtin.file:
@@ -29,15 +27,7 @@
     owner: "{{ backup_user }}"
     group: "{{ backup_user }}"
     mode: '0400'
-    
-- name: Ensure path to cron mysql-backup exists
-  ansible.builtin.file:
-    path: /etc/cron.d/mysql-backup
-    owner: root
-    group: root
-    mode: '0644'
-    state: touch
- 
+     
 - name: Upload cron backup-mysql
   ansible.builtin.template:
     src: mysql-backup

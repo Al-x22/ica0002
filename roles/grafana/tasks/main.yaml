@@ -49,6 +49,12 @@
     src: syslog.json
     dest: /var/lib/grafana/dashboards/
   notify: restart grafana
+  
+- name: Copy file mysql dashboard
+  ansible.builtin.copy:
+    src: mysql.json
+    dest: /var/lib/grafana/dashboards/
+  notify: restart grafana
 
   
 - name: Upload grafana dashboard config

@@ -1,12 +1,4 @@
 ---
-
-- name: Ensure path to cron influxdb-backup exists
-  ansible.builtin.file:
-    path: /etc/cron.d/influxdb-backup
-    owner: root
-    group: root
-    mode: '0644'
-    state: touch
  
 - name: Upload cron influxdb-backup
   ansible.builtin.template:
