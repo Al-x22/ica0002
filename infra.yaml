@@ -56,14 +56,14 @@
     tags: 
       - sql
       - mx
-            
+              
   - name: Agama Server
     hosts: agama_servers
     gather_facts: no
     become: y
     roles:
       - agama
-      - uwsgi
+      #- uwsgi
     tags: 
       - agama
       - mx
@@ -88,9 +88,10 @@
   
   - name: Grafana
     hosts: grafana_servers
-    become: y
+    become: yes
     gather_facts: no
     roles:
+      - docker
       - grafana
     tags: grafana
  

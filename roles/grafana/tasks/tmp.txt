@@ -19,26 +19,25 @@
   loop:
     - dashboards
     - datasources
-  notify: restart grafana
-  
-- name: Copy file main dashboard
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: /opt/grafana/provisioning/dashboards/{{ item }}
-  loop:
-    - default.yaml
-    - main.json
-    - syslog.json
-    - mysql.json
-  notify: restart grafana
-  
+
 - name: Add Grafana to Docker provisioning
   community.docker.docker_container:
     name: grafana
     image: grafana/grafana
-    published_ports: "{{ grafana_port }}:3000"
+    published_ports: "3001:3000"
     volumes: /opt/grafana:/etc/grafana
-    
+     
+- name: Copy file main dashboard
+  ansible.builtin.copy:
+    src: main.json
+    dest: /opt/grafana/provisioning/dashboards/{{ item }}
+  loop:
+    - dashboards.yaml
+    - main.json
+    - syslog.json
+    - mysql.json
+  notify: restart grafana
+ 
 - name: Upload grafana prometheus data source
   ansible.builtin.template:
     src: datasources.yaml

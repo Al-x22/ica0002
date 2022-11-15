@@ -1,0 +1,13 @@
+---
+
+- name: Install docker
+  ansible.builtin.apt:
+    name: 
+      - docker.io
+      - python3-docker
+    
+- name: Docker is started
+  ansible.builtin.service:
+    name: docker
+    enabled: yes
+    state: started
