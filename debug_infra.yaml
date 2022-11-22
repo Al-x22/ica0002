@@ -7,7 +7,9 @@
     
   - name: show templating results
     hosts: all
+    gather_facts: y
     tasks:
-      - template: src=./roles/bind/templates/named.conf.options dest=/etc/bind/named.conf.options
+      - debug: var=hostvars['Al-x22-1']['ansible_default_ipv4']['address'].split('.')[2]
+
 
       

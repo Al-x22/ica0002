@@ -1,0 +1,19 @@
+---
+
+- name: Install keepalived
+  ansible.builtin.apt:
+    name: haproxy
+
+- name: Upload keepalived configuration
+  ansible.builtin.template:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+  notify: restart haproxy
+      
+- name: keepalived is started
+  ansible.builtin.service:
+    name: keepalived
+    enabled: yes
+    state: started
+ 
+

@@ -113,7 +113,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.1",
+      "pluginVersion": "9.2.5",
       "targets": [
         {
           "datasource": {
@@ -176,7 +176,19 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22"
+                "value": "Al-x22-2"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mysql_up{instance=\"Al-x22-1:9104\", job=\"mysql\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-1"
               }
             ]
           }
@@ -203,7 +215,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.1",
+      "pluginVersion": "9.2.5",
       "targets": [
         {
           "datasource": {
@@ -280,7 +292,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.1",
+      "pluginVersion": "9.2.5",
       "targets": [
         {
           "datasource": {
@@ -364,7 +376,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.1",
+      "pluginVersion": "9.2.5",
       "targets": [
         {
           "datasource": {
@@ -379,6 +391,400 @@
         }
       ],
       "title": "InfluxDB",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus1"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "DOWN"
+                },
+                "1": {
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(117, 117, 117)",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "haproxy_up{instance=\"Al-x22-1:9101\", job=\"haproxy\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "haproxy_up{instance=\"Al-x22-2:9101\", job=\"haproxy\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-2"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 5,
+        "x": 0,
+        "y": 6
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus1"
+          },
+          "editorMode": "code",
+          "expr": "haproxy_up",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Haproxy_UP",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus1"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"haproxy_server_up\", backend=\"my_ha_frontend\", instance=\"Al-x22-1:9101\", job=\"haproxy\", server=\"agama1\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 14,
+        "x": 5,
+        "y": 6
+      },
+      "id": 27,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "distinctCount"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 1
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus1"
+          },
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "haproxy_server_up{instance=\"Al-x22-1:9101\"}",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Agama Containers Al-x22-1",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus1"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(117, 117, 117)",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "keepalived_vrrp_state{iname=\"uni\", instance=\"Al-x22-1:9165\", intf=\"ens3\", ip_address=\"192.168.101.19/24\", job=\"keepalived\", vrid=\"1\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "keepalived_vrrp_state{iname=\"uni\", instance=\"Al-x22-2:9165\", intf=\"ens3\", ip_address=\"192.168.101.19/24\", job=\"keepalived\", vrid=\"1\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-2"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 5,
+        "x": 19,
+        "y": 6
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus1"
+          },
+          "editorMode": "code",
+          "expr": "keepalived_vrrp_state",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "keepalived_vrrp_state",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus1"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "DOWN"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "UP"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{__name__=\"haproxy_server_up\", backend=\"my_ha_frontend\", instance=\"Al-x22-1:9101\", job=\"haproxy\", server=\"agama1\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 14,
+        "x": 5,
+        "y": 12
+      },
+      "id": 28,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "distinctCount"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 1
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus1"
+          },
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "haproxy_server_up{instance=\"Al-x22-2:9101\"}",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Agama Containers Al-x22-2",
       "type": "stat"
     },
     {
@@ -488,7 +894,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 18
       },
       "id": 6,
       "options": {
@@ -630,7 +1036,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 6
+        "y": 18
       },
       "id": 10,
       "options": {
@@ -730,7 +1136,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 26
       },
       "id": 12,
       "options": {
@@ -856,7 +1262,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 26
       },
       "id": 14,
       "options": {
@@ -948,7 +1354,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 22
+        "y": 34
       },
       "id": 22,
       "options": {
@@ -1098,7 +1504,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 22
+        "y": 34
       },
       "id": 16,
       "options": {
@@ -1194,10 +1600,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 42
       },
       "id": 18,
       "options": {
@@ -1389,6 +1795,6 @@
   "timezone": "",
   "title": "Main",
   "uid": "W6BVB5IVz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

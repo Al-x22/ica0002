@@ -1,4 +1,4 @@
-mysql_host: Al-x22-2
+mysql_host: Al-x22-1
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -58,6 +58,10 @@ linux_port: 9100
 prometheus_port: 9090
 influxdb_port: 8086
 agama_port: 8001
+agama2_port: 8002
+agama_container_range: 2
+haproxy_stats_port: 9188
+haproxy_uri: monitor
 
 prometheus_jobs:
   - name: linux
@@ -75,6 +79,12 @@ prometheus_jobs:
   - name: influxdb
     target_port: 9424
     target_group: influxdb_servers
+  - name: haproxy
+    target_port: 9101
+    target_group: haproxy_servers
+  - name: keepalived
+    target_port: 9165
+    target_group: haproxy_servers
 
 # Grafana
 
@@ -93,4 +103,9 @@ pinger_pings:
   -  cloudflare.com
   -  twitter.com
   -  facebook.com
+
+# Grafana
+
+vrrp_instance: uni
+virtual_router_id: 1
   

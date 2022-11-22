@@ -22,8 +22,16 @@
     
 - name: Add Agama to Docker provisioning
   community.docker.docker_container:
-    name: agama
+    name: agama1
     image: agama
     published_ports: "{{ agama_port }}:8000"
+    volumes: /opt/agama:/etc/agama
+    env: AGAMA_DATABASE_URI=mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
+    
+- name: Add Agama2 to Docker provisioning
+  community.docker.docker_container:
+    name: agama2
+    image: agama
+    published_ports: "{{ agama2_port }}:8000"
     volumes: /opt/agama:/etc/agama
     env: AGAMA_DATABASE_URI=mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}

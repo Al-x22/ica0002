@@ -1,0 +1,32 @@
+---
+
+- name: Download keepalived exporter
+  ansible.builtin.get_url:
+    url: http://backup/keepalived-exporter-1.2.0.linux-amd64.tar.gz
+    dest: /usr/local/bin/
+    mode: '0666'
+ 
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /usr/local/bin/keepalived-exporter-1.2.0.linux-amd64.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
+    
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /usr/local/bin/keepalived-exporter-1.2.0.linux-amd64
+    recurse: yes
+    owner: root
+    group: root
+    mode: '0755'
+  
+- name: Add keepalived exporter Service
+  ansible.builtin.template:
+    dest: /etc/systemd/system/keepalived-exporter.service
+    src: keepalived-exporter.service
+    
+- name: Start keepalived uncodnitionally
+  ansible.builtin.service:
+    name: keepalived-exporter
+    state: started
+    enabled: yes

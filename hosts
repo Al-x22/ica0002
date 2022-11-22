@@ -1,5 +1,5 @@
-Al-x22-1 ansible_host=193.40.156.67 ansible_port=3922 ansible_ssh_user=ubuntu
-Al-x22-2 ansible_host=193.40.156.67 ansible_port=28922 ansible_ssh_user=ubuntu
+Al-x22-1 ansible_host=193.40.156.67 ansible_port=27522 ansible_ssh_user=ubuntu
+Al-x22-2 ansible_host=193.40.156.67 ansible_port=37322 ansible_ssh_user=ubuntu
 
 [web_servers]
 Al-x22-1
@@ -23,4 +23,12 @@ Al-x22-1
 
 [agama_servers]
 Al-x22-1
+Al-x22-2
 
+[docker_servers]
+Al-x22-1
+Al-x22-2
+
+[haproxy_servers]
+Al-x22-1
+Al-x22-2
