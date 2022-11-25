@@ -1,6 +1,6 @@
 ---
 
-- name: Install keepalived
+- name: Add Keepalived service
   ansible.builtin.apt:
     name: keepalived
 

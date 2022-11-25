@@ -58,8 +58,8 @@ linux_port: 9100
 prometheus_port: 9090
 influxdb_port: 8086
 agama_port: 8001
-agama2_port: 8002
-agama_container_range: 2
+
+agama_container_range: 4
 haproxy_stats_port: 9188
 haproxy_uri: monitor
 
