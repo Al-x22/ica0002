@@ -94,7 +94,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 10,
+        "w": 7,
         "x": 0,
         "y": 0
       },
@@ -196,8 +196,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 5,
-        "x": 10,
+        "w": 6,
+        "x": 7,
         "y": 0
       },
       "id": 4,
@@ -269,12 +269,37 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/(-1)/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/(-2)/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-2"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 6,
-        "w": 5,
-        "x": 15,
+        "w": 6,
+        "x": 13,
         "y": 0
       },
       "id": 2,
@@ -357,8 +382,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
-        "x": 20,
+        "w": 5,
+        "x": 19,
         "y": 0
       },
       "id": 20,
@@ -1144,7 +1169,38 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sum(increase(bind_resolver_queries_total{instance=\"Al-x22-1:9119\"}[1m]))"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-1"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "palette-classic"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "auto"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-2"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -1158,7 +1214,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1172,13 +1228,26 @@
             "type": "prometheus",
             "uid": "prometheus1"
           },
-          "expr": "sum(increase(bind_resolver_queries_total [1m]))",
+          "editorMode": "builder",
+          "expr": "sum(increase(bind_resolver_queries_total{instance=\"Al-x22-2:9119\"}[1m]))",
           "format": "time_series",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "auto",
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus1"
+          },
+          "editorMode": "code",
+          "expr": "sum(increase(bind_resolver_queries_total{instance=\"Al-x22-1:9119\"}[1m]))",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "DNS Queries",

@@ -1,4 +1,4 @@
-mysql_host: Al-x22-1
+mysql_host: mysql2
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -35,8 +35,24 @@ sql_repl_password: !vault |
           33643665333533383532346164393232393261363034323039633236666663383135343838313033
           3664383966303363350a653132616435386464363262623939663464353132333835303564363266
           3537
-# For Bind
+# For Bind email user
 default_user: ubuntu
+dns_transfer_key: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          30333330363234343563633530393630366635623565623431633261623630653339316333343233
+          3339323932626332663365303333303533393061303036630a393233353263353136653836376566
+          62376233383337636563613130393439383233663336323835663237376531333464353139643234
+          3631346636656262310a663931396336613430663733323464306135326637643063326535663035
+          62366361626363623866376466666131383163383331306130623033343038666465626333383866
+          3630663935356161666431633838306339313931303738633436
+dns_nsupdate_key: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          36303332366637313461333132316463653533383065346139393233376231623734306364663833
+          3065323138646531366637393839343862613137346237350a373666636664376331333765303234
+          63663933373238323664306132623636633864313231323364343361616531356534303830623466
+          6662356466316536640a326532316665346638646139666136613663646333306639666232623866
+          38613863653661353266616265613030373664653132346466373833316466383764633634313636
+          3331666632336233316661373061343465383266376631626232
 node_id: "{{ (ansible_port / 100) | int }}"
 # dnsvars
 startup_name: alba.pz
@@ -52,6 +68,7 @@ forwarders:
 backup_server_ip: 192.168.42.132
 backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
+ka_version: 1.2.0
 # Jobs for prometheus
 
 linux_port: 9100
@@ -108,4 +125,19 @@ pinger_pings:
 
 vrrp_instance: uni
 virtual_router_id: 1
+
+dns_a_records:
+  backup: "{{ backup_server_ip }}"
   
+dns_cname_records:
+  grafana: "{{ groups['grafana_servers'][0] }}"
+  influxdb: "{{ groups['influxdb_servers'][0] }}"
+  lb1: "{{ groups['haproxy_servers'][0] }}"
+  lb2: "{{ groups['haproxy_servers'][1] }}"
+  mysql1: "{{ groups['db_servers'][0] }}"
+  mysql2: "{{ groups['db_servers'][1] }}"
+  ns1: "{{ groups['dns_servers'][0] }}"
+  ns2: "{{ groups['dns_servers'][1] }}"
+  prometheus: "{{ groups['prometheus_servers'][0] }}"
+  web1: "{{ groups['web_servers'][0] }}"
+  web2: "{{ groups['web_servers'][1] }}"

@@ -1,0 +1,31 @@
+---
+
+- name: Install dnspython
+  ansible.builtin.apt:
+    name: python3-dnspython
+
+- name: Add A server records
+  community.general.nsupdate:
+    key_algorithm: "hmac-sha256"
+    key_name: "nsupdate.key"
+    key_secret: "{{ dns_nsupdate_key }}"
+    server: "localhost"
+    zone: "{{ startup_name }}"
+    record: "{{ item.key }}"
+    type: "A"
+    value: "{{ item.value }}"
+  loop: "{{dns_a_records | dict2items}}"
+  run_once: True
+  
+- name: Add CNAME server records
+  community.general.nsupdate:
+    key_algorithm: "hmac-sha256"
+    key_name: "nsupdate.key"
+    key_secret: "{{ dns_nsupdate_key }}"
+    server: "localhost"
+    zone: "{{ startup_name }}"
+    record: "{{ item.key }}"
+    type: "CNAME"
+    value: "{{ item.value }}"
+  loop: "{{dns_cname_records | dict2items}}"
+  run_once: True

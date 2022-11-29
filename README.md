@@ -30,6 +30,9 @@ Creating commit to see if Virtual Machine Works.
 - named-checonf // To check syntax of bind9
 - named_checkzone // For zone files
 
+- dig AXFR alba.pz @192.168.42.94
+
 sudo su -l backup -s /bin/bash
+
 
 

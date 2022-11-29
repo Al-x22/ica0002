@@ -21,11 +21,22 @@
     src: named.conf.local
     dest: /etc/bind/named.conf.local
   notify: restart bind9
+  no_log: yes
   
 - name: Upload bind9 local db configuration
   ansible.builtin.template:
     src: db.alba.pz.j2
-    dest: /var/lib/bind/db.alba.pz.j2
+    dest: /var/cache/bind/db.{{ startup_name }}.j2
+    force: false
   notify: Restart dns zone
+  when: inventory_hostname in groups['dns_masters']
+  
+- name: Upload bind9 rev db configuration
+  ansible.builtin.template:
+    src: db.rev.j2
+    dest: /var/cache/bind/db.rev
+    force: true
+  notify: Restart dns zone
+  when: inventory_hostname in groups['dns_masters']
 
     

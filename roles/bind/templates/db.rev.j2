@@ -1,0 +1,20 @@
+$TTL	604800
+168.192.in-addr.arpa.	IN	SOA	{{ groups['dns_masters'][0] }}.{{ startup_name }}. {{ default_user }}.{{ startup_name }}. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+{% for vm in groups['dns_servers'] %}
+168.192.in-addr.arpa.	IN	NS	{{ vm }}.{{ startup_name }}.
+{% endfor %}
+{% for vm in groups['dns_servers'] %}
+{{ vm }}	IN	A	{{ hostvars[vm]['ansible_default_ipv4']['address'] }}
+{% endfor %}
+{% for vm in groups['dns_servers'] %}
+{{ (hostvars[vm]['ansible_default_ipv4']['address']|split('.'))[3] }}.{{ (hostvars[vm]['ansible_default_ipv4']['address']|split('.'))[2] }}	IN	PTR {{ vm }}.{{ startup_name }}.
+{% endfor %}
+
+
+

@@ -1,4 +1,39 @@
 zone "{{ startup_name }}" {
-    type primary;
-    file "db.alba.pz.j2";
+
+    {% if inventory_hostname in groups['dns_masters']%}
+    type master;
+    allow-transfer {
+    	key transfer.key;
+    };
+    allow-update {
+    	key nsupdate.key;
+    };
+    {% else %}
+    type slave;
+    masters { {{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }}; };
+    {% endif %}
+    file "db.{{ startup_name }}.j2";
+};
+
+{% if inventory_hostname in groups['dns_slaves']%}
+server {{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }} {
+    keys {transfer.key;};
+};
+{% endif %}
+
+zone "168.192.in-addr.arpa" {
+
+    {% if inventory_hostname in groups['dns_masters']%}
+    type master;
+    allow-transfer {
+    	key transfer.key;
+    };
+    allow-update {
+    	key nsupdate.key;
+    };
+    {% else %}
+    type slave;
+    masters { {{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }}; };
+    {% endif %}
+    file "db.rev";
 };

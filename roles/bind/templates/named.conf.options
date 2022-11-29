@@ -1,7 +1,7 @@
 // Subnets allowed
 acl corpnets { {% for n in allowed_addresses %}{{n}}; {% endfor %} };
 options {
-	directory "/var/lib/bind";
+	directory "/var/cache/bind";
 	
 	allow-query { 
 	      corpnets; 
@@ -24,3 +24,11 @@ statistics-channels {
   inet 127.0.0.1 port 8053 allow { 127.0.0.1; };
 };
 
+key "transfer.key" {
+	algorithm hmac-sha256;
+	secret "{{ dns_transfer_key }}";
+};
+key "nsupdate.key" {
+	algorithm hmac-sha256;
+	secret "{{ dns_nsupdate_key }}";
+};

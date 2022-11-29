@@ -1,5 +1,5 @@
-Al-x22-1 ansible_host=193.40.156.67 ansible_port=41722 ansible_ssh_user=ubuntu
-Al-x22-2 ansible_host=193.40.156.67 ansible_port=34722 ansible_ssh_user=ubuntu
+Al-x22-1 ansible_host=193.40.156.67 ansible_port=19322 ansible_ssh_user=ubuntu
+Al-x22-2 ansible_host=193.40.156.67 ansible_port=15022 ansible_ssh_user=ubuntu
 
 [web_servers]
 Al-x22-1
@@ -9,8 +9,15 @@ Al-x22-2
 Al-x22-2
 Al-x22-1
 
-[dns_servers]
+[dns_masters]
 Al-x22-2
+
+[dns_slaves]
+Al-x22-1
+
+[dns_servers:children]
+dns_masters
+dns_slaves
 
 [prometheus_servers]
 Al-x22-2
