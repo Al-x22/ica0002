@@ -24,7 +24,7 @@ scrape_configs:
   - job_name: {{ n.name }}
     static_configs:
         - targets:
-      {% for vm in groups[n.target_group] %}
+      {% for vm in n.target_group %}
       - {{ vm }}:{{ n.target_port }}
       {% endfor %}
   {% endfor %}

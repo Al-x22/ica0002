@@ -69,7 +69,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "nginx_up{instance=\"Al-x22-1:9113\", job=\"nginx\"}"
+              "options": "nginx_up{instance=\"web1:9113\", job=\"nginx\"}"
             },
             "properties": [
               {
@@ -81,7 +81,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "nginx_up{instance=\"Al-x22-2:9113\", job=\"nginx\"}"
+              "options": "nginx_up{instance=\"web2:9113\", job=\"nginx\"}"
             },
             "properties": [
               {
@@ -113,7 +113,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -171,7 +171,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_up{instance=\"Al-x22-2:9104\", job=\"mysql\"}"
+              "options": "mysql_up{instance=\"mysql2:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -183,7 +183,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_up{instance=\"Al-x22-1:9104\", job=\"mysql\"}"
+              "options": "mysql_up{instance=\"mysql1:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -204,7 +204,7 @@
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -215,7 +215,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -273,7 +273,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/(-1)/"
+              "options": "/(ns1)/"
             },
             "properties": [
               {
@@ -285,7 +285,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/(-2)/"
+              "options": "/(ns2)/"
             },
             "properties": [
               {
@@ -306,7 +306,7 @@
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -317,7 +317,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -401,7 +401,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -459,7 +459,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/(-1)/"
+              "options": "/(lb1)/"
             },
             "properties": [
               {
@@ -471,7 +471,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/(-2)/"
+              "options": "/(lb2)/"
             },
             "properties": [
               {
@@ -503,7 +503,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -602,7 +602,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -611,7 +611,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "haproxy_server_up{instance=\"Al-x22-1:9101\"}",
+          "expr": "haproxy_server_up{instance=\"lb1:9101\"}",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -665,7 +665,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/(-1)/"
+              "options": "/(lb1)/"
             },
             "properties": [
               {
@@ -677,7 +677,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/(-2)/"
+              "options": "/(lb2)/"
             },
             "properties": [
               {
@@ -709,7 +709,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -807,7 +807,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.2.6",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -816,7 +816,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "haproxy_server_up{instance=\"Al-x22-2:9101\"}",
+          "expr": "haproxy_server_up{instance=\"lb2:9101\"}",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -1116,7 +1116,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "semi-dark-red",
+            "fixedColor": "yellow",
             "mode": "fixed"
           },
           "custom": {
@@ -1173,7 +1173,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "sum(increase(bind_resolver_queries_total{instance=\"Al-x22-1:9119\"}[1m]))"
+              "options": "sum(increase(bind_resolver_queries_total{instance=\"ns1:9119\"}[1m]))"
             },
             "properties": [
               {
@@ -1183,7 +1183,8 @@
               {
                 "id": "color",
                 "value": {
-                  "mode": "palette-classic"
+                  "fixedColor": "red",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -1229,7 +1230,7 @@
             "uid": "prometheus1"
           },
           "editorMode": "builder",
-          "expr": "sum(increase(bind_resolver_queries_total{instance=\"Al-x22-2:9119\"}[1m]))",
+          "expr": "sum(increase(bind_resolver_queries_total{instance=\"ns2:9119\"}[1m]))",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1242,8 +1243,8 @@
             "type": "prometheus",
             "uid": "prometheus1"
           },
-          "editorMode": "code",
-          "expr": "sum(increase(bind_resolver_queries_total{instance=\"Al-x22-1:9119\"}[1m]))",
+          "editorMode": "builder",
+          "expr": "sum(increase(bind_resolver_queries_total{instance=\"ns1:9119\"}[1m]))",
           "hide": false,
           "legendFormat": "__auto",
           "range": true,
@@ -1878,6 +1879,6 @@
   "timezone": "",
   "title": "Main",
   "uid": "W6BVB5IVz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

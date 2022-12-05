@@ -69,7 +69,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_up{instance=\"Al-x22-2:9104\", job=\"mysql\"}"
+              "options": "mysql_up{instance=\"mysql2:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -81,7 +81,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_up{instance=\"Al-x22-1:9104\", job=\"mysql\"}"
+              "options": "mysql_up{instance=\"mysql1:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -113,7 +113,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -191,7 +191,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -253,19 +253,19 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"mysql_global_variables_read_only\", instance=\"Al-x22-1:9104\", job=\"mysql\"}"
+              "options": "{__name__=\"mysql_global_variables_read_only\", instance=\"mysql1:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "AL-x22-1"
+                "value": "Al-x22-1"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "{__name__=\"mysql_global_variables_read_only\", instance=\"Al-x22-2:9104\", job=\"mysql\"}"
+              "options": "{__name__=\"mysql_global_variables_read_only\", instance=\"mysql2:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -297,7 +297,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -359,8 +359,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "{__name__=\"mysql_slave_status_slave_io_running\", instance=\"Al-x22-1:9104\", job=\"mysql\", master_host=\"Al-x22-2\", master_uuid=\"1215c423-60ea-11ed-b264-fa163e221a13\"}"
+              "id": "byRegexp",
+              "options": "/(instance=\"mysql1)/"
             },
             "properties": [
               {
@@ -371,8 +371,8 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "{__name__=\"mysql_slave_status_slave_io_running\", instance=\"Al-x22-2:9104\", job=\"mysql\", master_host=\"Al-x22-1\", master_uuid=\"11d2ff4f-60ea-11ed-a852-fa163eebea80\"}"
+              "id": "byRegexp",
+              "options": "/(instance=\"mysql2)/"
             },
             "properties": [
               {
@@ -404,7 +404,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -467,25 +467,25 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "{__name__=\"mysql_slave_status_slave_sql_running\", instance=\"Al-x22-1:9104\", job=\"mysql\", master_host=\"Al-x22-2\", master_uuid=\"1215c423-60ea-11ed-b264-fa163e221a13\"}"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "AL-x22-1"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{__name__=\"mysql_slave_status_slave_sql_running\", instance=\"Al-x22-2:9104\", job=\"mysql\", master_host=\"Al-x22-1\", master_uuid=\"11d2ff4f-60ea-11ed-a852-fa163eebea80\"}"
+              "id": "byRegexp",
+              "options": "/(instance=\"mysql2)/"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "Al-x22-2"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/(instance=\"mysql1)/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-1"
               }
             ]
           }
@@ -512,7 +512,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.2.4",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {

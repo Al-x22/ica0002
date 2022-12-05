@@ -12,7 +12,7 @@
   loop:
     - stopreplica
     - resetprimary
-  when: inventory_hostname == mysql_host
+  when: inventory_hostname == dns_cname_records[mysql_host]
 
 - name: Reset MySQL replica
   community.mysql.mysql_replication:
@@ -26,4 +26,4 @@
     - changeprimary
     - resetprimary
     - startreplica
-  when: inventory_hostname != mysql_host
+  when: inventory_hostname != dns_cname_records[mysql_host]

@@ -53,7 +53,7 @@
 - name: Add read only mode to secondary mysql server    
   community.mysql.mysql_variables:
     variable: read_only
-    value: "{{ 'OFF' if inventory_hostname == mysql_host else 'ON' }}"
+    value: "{{ 'OFF' if inventory_hostname == dns_cname_records[mysql_host] else 'ON' }}"
     mode: persist
     login_unix_socket: /var/run/mysqld/mysqld.sock
   notify:

@@ -1,4 +1,4 @@
-mysql_host: mysql2
+mysql_host: mysql1
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -10,7 +10,7 @@ mysql_password: !vault |
           3964
 
 #Sql-exporter user and password
-sql_exporter_user: mysq
+sql_exporter_user: mysql
 sql_exporter_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           66653765343734323236306265326331373664356533323861313863313235343165613130336639
@@ -75,33 +75,46 @@ linux_port: 9100
 prometheus_port: 9090
 influxdb_port: 8086
 agama_port: 8001
-
-agama_container_range: 4
+# Range means containers per VM in web_server group
+agama_container_range: 2
 haproxy_stats_port: 9188
 haproxy_uri: monitor
 
 prometheus_jobs:
   - name: linux
     target_port: 9100
-    target_group: all
+    target_group:
+      - Al-x22-1
+      - Al-x22-2
   - name: bind9
     target_port: 9119
-    target_group: dns_servers
+    target_group:
+      - ns1
+      - ns2
   - name: mysql
     target_port: 9104
-    target_group: db_servers
+    target_group:
+      - mysql1
+      - mysql2
   - name: nginx
     target_port: 9113
-    target_group: web_servers
+    target_group: 
+      - web1
+      - web2
   - name: influxdb
     target_port: 9424
-    target_group: influxdb_servers
+    target_group: 
+      - influxdb
   - name: haproxy
     target_port: 9101
-    target_group: haproxy_servers
+    target_group: 
+      -  lb1
+      -  lb2
   - name: keepalived
     target_port: 9165
-    target_group: haproxy_servers
+    target_group: 
+      -  lb1
+      -  lb2
 
 # Grafana
 
