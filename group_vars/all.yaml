@@ -70,6 +70,8 @@ backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGE
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
 ka_version: 1.2.0
 
+mysql_port: 3306
+
 prometheus_port: 9090
 influxdb_port: 8086
 
@@ -80,11 +82,12 @@ haproxy_stats_port: 9188
 haproxy_uri: monitor
 haproxy_exporter_port: 9875
 
+# Prometheus Jobs Ports
 node_exporter_port: 9100
 bind_exporter_port: 9119
 mysql_exporter_port: 9104
 nginx_exporter_port: 9113
-influxdb_exporter_port: 9424
+influxdb_exporter_port: 9324
 haproxy_prometheus_exporter_port: 9101
 keepalived_exporter_port: 9165
 
@@ -100,6 +103,7 @@ prometheus_jobs:
     target_group:
       - ns1
       - ns2
+      - ns3
   - name: mysql
     target_port: "{{ mysql_exporter_port }}"
     target_group:
@@ -110,6 +114,7 @@ prometheus_jobs:
     target_group: 
       - web1
       - web2
+      - web3
   - name: influxdb
     target_port: "{{ influxdb_exporter_port }}"
     target_group: 
@@ -152,14 +157,16 @@ dns_a_records:
   backup: "{{ backup_server_ip }}"
   
 dns_cname_records:
-  grafana: "{{ groups['grafana_servers'][0] }}"
-  influxdb: "{{ groups['influxdb_servers'][0] }}"
-  lb1: "{{ groups['haproxy_servers'][0] }}"
-  lb2: "{{ groups['haproxy_servers'][1] }}"
-  mysql1: "{{ groups['db_servers'][0] }}"
-  mysql2: "{{ groups['db_servers'][1] }}"
-  ns1: "{{ groups['dns_servers'][0] }}"
-  ns2: "{{ groups['dns_servers'][1] }}"
-  prometheus: "{{ groups['prometheus_servers'][0] }}"
-  web1: "{{ groups['web_servers'][0] }}"
-  web2: "{{ groups['web_servers'][1] }}"
+  grafana: "{{ groups['grafana_servers'][0] }}" #Alex 3
+  influxdb: "{{ groups['influxdb_servers'][0] }}" #Alex 3
+  lb1: "{{ groups['haproxy_servers'][0] }}" #Alex 1
+  lb2: "{{ groups['haproxy_servers'][1] }}" #Alex 2
+  mysql1: "{{ groups['db_servers'][0] }}" #Alex 1
+  mysql2: "{{ groups['db_servers'][1] }}" #Alex 2
+  ns1: "{{ groups['dns_servers'][0] }}" #Alex 1
+  ns2: "{{ groups['dns_servers'][1] }}" #Alex 3 
+  ns3: "{{ groups['dns_servers'][2] }}" #Alex 2
+  prometheus: "{{ groups['prometheus_servers'][0] }}" #Alex 3
+  web1: "{{ groups['web_servers'][0] }}" #Alex 1
+  web2: "{{ groups['web_servers'][1] }}" #Alex 2
+  web3: "{{ groups['web_servers'][2] }}" #Alex 3

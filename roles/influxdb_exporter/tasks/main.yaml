@@ -13,9 +13,10 @@
     mode: '0744'
     
 - name: Add Influxdb Exporter Service
-  ansible.builtin.copy:
+  ansible.builtin.template:
     dest: /etc/systemd/system/prometheus-influxdb-stats-exporter.service
     src: prometheus-influxdb-stats-exporter.service
+  notify: restart prometheus-influxdb-stats-exporter
     
 - name: Execute systemd reload to enable influx exporter service
   ansible.builtin.systemd:

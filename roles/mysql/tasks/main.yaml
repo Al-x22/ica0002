@@ -27,7 +27,7 @@
     - Reset MySQL source
     - Reset MySQL replica
   
-- name: MySQL user
+- name: MySQL user for agama
   community.mysql.mysql_user:
     name: "{{ mysql_user }}"
     password: "{{ mysql_password }}"

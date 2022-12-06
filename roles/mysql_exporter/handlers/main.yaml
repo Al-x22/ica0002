@@ -4,7 +4,3 @@
   ansible.builtin.service:
     name: prometheus-mysqld-exporter
     state: restarted
-  
-- name: daemon reload
-  ansible.builtin.systemd:
-    daemon_reload: yes

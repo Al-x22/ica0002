@@ -1,0 +1,5 @@
+- name: restart prometheus-influxdb-stats-exporter
+  ansible.builtin.service:
+    name: prometheus-influxdb-stats-exporter
+    state: restarted
+    enabled: yes

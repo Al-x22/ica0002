@@ -26,7 +26,6 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 12433,
   "graphTooltip": 0,
-  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -70,7 +69,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.2.1",
+      "pluginVersion": "9.3.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -809,7 +808,7 @@
           }
         ]
       },
-      "pluginVersion": "9.2.1",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
@@ -891,7 +890,7 @@
   "templating": {
     "list": [
       {
-        "allValue": "",
+        "allValue": ".*",
         "current": {
           "selected": false,
           "text": "All",
@@ -919,7 +918,7 @@
         "useTags": false
       },
       {
-        "allValue": "",
+        "allValue": ".*",
         "current": {
           "selected": false,
           "text": "All",
@@ -947,7 +946,7 @@
         "useTags": false
       },
       {
-        "allValue": "",
+        "allValue": ".*",
         "current": {
           "selected": false,
           "text": "All",

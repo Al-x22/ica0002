@@ -32,9 +32,14 @@ Creating commit to see if Virtual Machine Works.
 
 - dig AXFR alba.pz @192.168.42.94
 
+# Backup
+
 sudo su -l backup -s /bin/bash
 
 su - backup
 ssh Al-x22@backup
 
+# SQL
+
+SELECT user,host from mysql.user
 

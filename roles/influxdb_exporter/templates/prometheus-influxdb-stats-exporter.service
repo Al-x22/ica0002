@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 User=prometheus
-ExecStart=/usr/local/bin/influx_stats_exporter_linux_amd64 --web.listen-address=:{{influxdb_exporter_port}}
+ExecStart=/usr/local/bin/influx_stats_exporter_linux_amd64 --web.listen-address=":{{influxdb_exporter_port}}"
 
 [Install]
 WantedBy=multi-user.target

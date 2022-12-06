@@ -4,3 +4,4 @@ log-bin = /var/log/mysql/mysql-bin.log
 relay-log = /var/log/mysql/mysql-relay.log
 replicate-do-db = {{ mysql_database }}
 server-id = {{ node_id }}
+port = {{ mysql_port }}

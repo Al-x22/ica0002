@@ -89,6 +89,18 @@
                 "value": "web2"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "nginx_up{instance=\"web3:9113\", job=\"nginx\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "web3"
+              }
+            ]
           }
         ]
       },
@@ -278,7 +290,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "ns1"
+                "value": "ns1 (Master)"
               }
             ]
           },
@@ -291,6 +303,18 @@
               {
                 "id": "displayName",
                 "value": "ns2"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/(ns3)/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ns3"
               }
             ]
           }
@@ -1917,6 +1941,6 @@
   "timezone": "",
   "title": "Main",
   "uid": "W6BVB5IVz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
