@@ -1,10 +1,10 @@
 ---
-
-- name: restart prometheus-mysqld-exporter
+   
+- name: restart prometheus-bind-exporter
   ansible.builtin.service:
-    name: prometheus-mysqld-exporter
+    name: prometheus-bind-exporter
     state: restarted
-  
+    
 - name: daemon reload
   ansible.builtin.systemd:
     daemon_reload: yes

@@ -28,6 +28,8 @@
   ansible.builtin.template:
     src: prometheus-mysqld-exporter 
     dest: /etc/default/prometheus-mysqld-exporter 
-  notify: restart prometheus-mysqld-exporter 
+  notify: 
+    - restart prometheus-mysqld-exporter 
+    - daemon reload
   no_log: yes
    

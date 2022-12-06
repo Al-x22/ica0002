@@ -1,1 +1,1 @@
-ARGS="--collect.slave_status"
+ARGS="--collect.slave_status --web.listen-address=:{{ mysql_exporter_port }}"

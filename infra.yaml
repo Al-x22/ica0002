@@ -67,7 +67,7 @@
       - mysql_exporter
       - mysql_backup
     tags: 
-      - sql
+      - mysql
       - mx
             
   - name: Rsyslog Remote Log

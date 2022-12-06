@@ -27,5 +27,6 @@
     published_ports: "{{ agama_port + item|int }}:8000"
     volumes: /opt/agama:/etc/agama
     env: AGAMA_DATABASE_URI=mysql+pymysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
+    restart_policy: unless-stopped
   with_sequence: start=0 end={{ agama_container_range - 1 }}
     

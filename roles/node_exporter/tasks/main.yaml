@@ -4,6 +4,12 @@
   ansible.builtin.apt:
     name: prometheus-node-exporter
 
+- name: Upload prometheus node exporter var conf
+  ansible.builtin.template:
+    src: prometheus-node-exporter
+    dest: /etc/default/prometheus-node-exporter
+  notify: restart prometheus-node-exporter 
+
 - name: Ensure node_exporters is always started please
   ansible.builtin.service:
     name: prometheus-node-exporter

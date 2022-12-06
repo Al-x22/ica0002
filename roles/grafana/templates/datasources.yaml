@@ -7,21 +7,28 @@ datasources:
     access: proxy
     orgId: 1
     uid: prometheus1
-    url: http://prometheus:{{ prometheus_port }}/prometheus
+    url: "http://prometheus:{{ prometheus_port }}/prometheus"
+    isDefault: true
     version: 1
     editable: false
     
   - name: influx:latency
     type: influxdb
-    url: http://influxdb:{{ influxdb_port }}
+    access: proxy
+    orgId: 1
+    url: "http://influxdb:{{ influxdb_port }}"
     database: latency
     uid: influxl1
+    isDefault: false
     
   - name: influx:telegraf
     type: influxdb
-    url: http://influxdb:{{ influxdb_port }}
+    access: proxy
+    orgId: 1
+    url: "http://influxdb:{{ influxdb_port }}"
     database: telegraf
     uid: telegraf1
+    isDefault: false
     
   
   

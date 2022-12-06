@@ -34,5 +34,7 @@ Creating commit to see if Virtual Machine Works.
 
 sudo su -l backup -s /bin/bash
 
+su - backup
+ssh Al-x22@backup
 
 

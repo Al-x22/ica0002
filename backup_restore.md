@@ -7,7 +7,7 @@ Restore MySQL data from the backup:
     sudo -u backup rm -r /home/backup/restore/mysql
     sudo -u backup duplicity --no-encryption restore rsync://Al-x22@backup/mysql /home/backup/restore/mysql
     sudo su
-    mysql agama < /home/backup/mysql/agama.sql
+    mysql agama < /home/backup/restore/mysql/agama.sql
 
 Finally, log into the agama webpage if you want to see your restoration results easily.
 Restore can also be checked by logging into my SQL in the machine and checking the TABLE agama directly

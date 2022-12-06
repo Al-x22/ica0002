@@ -4,6 +4,14 @@
   ansible.builtin.apt:
     name: prometheus-bind-exporter
 
+- name: Upload prometheus bind exporter var conf
+  ansible.builtin.template:
+    src: prometheus-bind-exporter
+    dest: /etc/default/prometheus-bind-exporter
+  notify:
+    - restart prometheus-bind-exporter
+    - daemon reload 
+
 - name: Ensure bind_exporters is always started please
   ansible.builtin.service:
     name: prometheus-bind-exporter

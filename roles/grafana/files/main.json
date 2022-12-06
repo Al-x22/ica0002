@@ -74,7 +74,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Alex-x22-1"
+                "value": "web1"
               }
             ]
           },
@@ -86,7 +86,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-2"
+                "value": "web2"
               }
             ]
           }
@@ -102,11 +102,11 @@
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -170,25 +170,25 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "mysql_up{instance=\"mysql2:9104\", job=\"mysql\"}"
+              "id": "byRegexp",
+              "options": "/(mysql1)/"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-2"
+                "value": "mysql1"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "mysql_up{instance=\"mysql1:9104\", job=\"mysql\"}"
+              "id": "byRegexp",
+              "options": "/(mysql2)/"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-1"
+                "value": "mysql2"
               }
             ]
           }
@@ -208,7 +208,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -278,7 +278,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-1"
+                "value": "ns1"
               }
             ]
           },
@@ -290,7 +290,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-2"
+                "value": "ns2"
               }
             ]
           }
@@ -310,7 +310,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -394,7 +394,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -464,7 +464,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-1"
+                "value": "lb1"
               }
             ]
           },
@@ -476,7 +476,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-2"
+                "value": "lb2"
               }
             ]
           }
@@ -496,7 +496,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -534,7 +534,6 @@
             "mode": "thresholds"
           },
           "decimals": 1,
-          "displayName": "2",
           "mappings": [
             {
               "options": {
@@ -670,7 +669,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-1"
+                "value": "lb1"
               }
             ]
           },
@@ -682,7 +681,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Al-x22-2"
+                "value": "lb2"
               }
             ]
           }
@@ -926,6 +925,26 @@
                 "value": "Al-x22-2"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"Al-x22-3:9100\", job=\"linux\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-3"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 45
+              },
+              {
+                "id": "custom.gradientMode",
+                "value": "none"
+              }
+            ]
           }
         ]
       },
@@ -1066,6 +1085,25 @@
               {
                 "id": "displayName",
                 "value": "Al-x22-1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{cpu=\"0\", instance=\"Al-x22-3:9100\", job=\"linux\", mode=\"idle\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Al-x22-3"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
               }
             ]
           }
@@ -1860,7 +1898,7 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -1879,6 +1917,6 @@
   "timezone": "",
   "title": "Main",
   "uid": "W6BVB5IVz",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }

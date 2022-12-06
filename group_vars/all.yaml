@@ -1,4 +1,4 @@
-mysql_host: mysql1
+mysql_host: mysql2
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -69,49 +69,58 @@ backup_server_ip: 192.168.42.132
 backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
 ka_version: 1.2.0
-# Jobs for prometheus
 
-linux_port: 9100
 prometheus_port: 9090
 influxdb_port: 8086
+
 agama_port: 8001
-# Range means containers per VM in web_server group
 agama_container_range: 2
+
 haproxy_stats_port: 9188
 haproxy_uri: monitor
+haproxy_exporter_port: 9875
+
+node_exporter_port: 9100
+bind_exporter_port: 9119
+mysql_exporter_port: 9104
+nginx_exporter_port: 9113
+influxdb_exporter_port: 9424
+haproxy_prometheus_exporter_port: 9101
+keepalived_exporter_port: 9165
 
 prometheus_jobs:
   - name: linux
-    target_port: 9100
+    target_port: "{{ node_exporter_port }}"
     target_group:
       - Al-x22-1
       - Al-x22-2
+      - Al-x22-3
   - name: bind9
-    target_port: 9119
+    target_port: "{{ bind_exporter_port }}"
     target_group:
       - ns1
       - ns2
   - name: mysql
-    target_port: 9104
+    target_port: "{{ mysql_exporter_port }}"
     target_group:
       - mysql1
       - mysql2
   - name: nginx
-    target_port: 9113
+    target_port: "{{ nginx_exporter_port }}"
     target_group: 
       - web1
       - web2
   - name: influxdb
-    target_port: 9424
+    target_port: "{{ influxdb_exporter_port }}"
     target_group: 
       - influxdb
   - name: haproxy
-    target_port: 9101
+    target_port: "{{ haproxy_prometheus_exporter_port }}"
     target_group: 
       -  lb1
       -  lb2
   - name: keepalived
-    target_port: 9165
+    target_port: "{{ keepalived_exporter_port }}"
     target_group: 
       -  lb1
       -  lb2

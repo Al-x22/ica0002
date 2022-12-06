@@ -1,0 +1,24 @@
+# Set the command-line arguments to pass to the server.
+ARGS='-web.listen-address=":{{ bind_exporter_port }}"'
+
+# Usage of prometheus-bind-exporter:
+#  -bind.pid-file string
+#    	Path to Bind's pid file to export process information.
+#  -bind.stats-groups value
+#    	Comma-separated list of statistics to collect. Available: [server, view, tasks] (default "server,view")
+#  -bind.stats-url string
+#    	HTTP XML API address of an Bind server. (default "http://localhost:8053/")
+#  -bind.stats-version string
+#    	BIND statistics version. Can be detected automatically. Available: [xml.v2, xml.v3, auto] (default "auto")
+#  -bind.timeout duration
+#    	Timeout for trying to get stats from Bind. (default 10s)
+#  -log.format value
+#    	Set the log target and format. Example: "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true" (default "logger:stderr")
+#  -log.level value
+#    	Only log messages with the given severity or above. Valid levels: [debug, info, warn, error, fatal] (default "info")
+#  -version
+#    	Print version information.
+#  -web.listen-address string
+#    	Address to listen on for web interface and telemetry. (default ":9119")
+#  -web.telemetry-path string
+#    	Path under which to expose metrics. (default "/metrics")

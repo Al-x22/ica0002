@@ -13,7 +13,7 @@
     src: prometheus
     dest: /etc/default/prometheus
   notify: restart prometheus
-
+      
 - name: Upload prometheus configuration
   ansible.builtin.template:
     src: prometheus.yml

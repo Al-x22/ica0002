@@ -290,7 +290,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -397,7 +397,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -505,7 +505,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -668,6 +668,6 @@
   "timezone": "",
   "title": "MySQL",
   "uid": "Ii2O1JD4k",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
