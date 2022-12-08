@@ -1,3 +1,4 @@
+#Restart agama and mysql when changing mysql_host
 mysql_host: mysql2
 mysql_database: agama
 mysql_user: agama
@@ -163,8 +164,8 @@ dns_cname_records:
   lb2: "{{ groups['haproxy_servers'][1] }}" #Alex 2
   mysql1: "{{ groups['db_servers'][0] }}" #Alex 1
   mysql2: "{{ groups['db_servers'][1] }}" #Alex 2
-  ns1: "{{ groups['dns_servers'][0] }}" #Alex 1
-  ns2: "{{ groups['dns_servers'][1] }}" #Alex 3 
+  ns1: "{{ groups['dns_servers'][0] }}" #Alex 3
+  ns2: "{{ groups['dns_servers'][1] }}" #Alex 1 
   ns3: "{{ groups['dns_servers'][2] }}" #Alex 2
   prometheus: "{{ groups['prometheus_servers'][0] }}" #Alex 3
   web1: "{{ groups['web_servers'][0] }}" #Alex 1

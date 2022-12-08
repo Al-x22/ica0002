@@ -15,6 +15,7 @@
     src: named.conf.options
     dest: /etc/bind/named.conf.options
   notify: restart bind9
+  no_log: yes
   
 - name: Upload bind9 local configuration
   ansible.builtin.template:
@@ -30,6 +31,7 @@
     force: false
   notify: Restart dns zone
   when: inventory_hostname in groups['dns_masters']
+  no_log: yes
   
 - name: Upload bind9 rev db configuration
   ansible.builtin.template:
@@ -38,5 +40,6 @@
     force: true
   notify: Restart dns zone
   when: inventory_hostname in groups['dns_masters']
+  no_log: yes
 
     

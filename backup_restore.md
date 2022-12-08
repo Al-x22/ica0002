@@ -2,12 +2,21 @@ Install and configure infrastructure with Ansible:
 
     ansible-playbook infra.yaml
 
-Restore MySQL data from the backup:
+The following commands need to be applied in the master server of each service.
+The current master of SQL and Influx is: mysql2 (Al-x22-2) and influxdb(Al-x22-2)
+
+# Restore MySQL data from the backup:
 
     sudo -u backup rm -r /home/backup/restore/mysql
     sudo -u backup duplicity --no-encryption restore rsync://Al-x22@backup/mysql /home/backup/restore/mysql
     sudo su
     mysql agama < /home/backup/restore/mysql/agama.sql
+    
+There is no problem if the first command states there is no directory. The second command might give:
+
+'Error '[Errno 1] Operation not permitted: b'/home/backup/restore/mysql'' processing .'
+
+Dont worry, that is ok.
 
 Finally, log into the agama webpage if you want to see your restoration results easily.
 Restore can also be checked by logging into my SQL in the machine and checking the TABLE agama directly
@@ -18,7 +27,7 @@ Restore can also be checked by logging into my SQL in the machine and checking t
     SELECT * FROM agama.item;
     
     
-Restore InfluxDB data from the backup:
+# Restore InfluxDB data from the backup:
 
     sudo -u backup rm -r /home/backup/restore/influxdb
     sudo -u backup duplicity --no-encryption restore rsync://Al-x22@backup/influxdb /home/backup/restore/influxdb
@@ -38,3 +47,8 @@ To Check if this worked do the following:
     SHOW DATABASES
     
 Check if the databases telegraf and latency are there. If they are, good.
+
+Restart telegraf and pinger services. This can be done by runngin ansible too.
+
+    service telegraf restart
+    service pinger restart

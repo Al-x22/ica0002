@@ -20,7 +20,7 @@
   ansible.builtin.template:
     src: .my.cnf
     dest: /home/{{ backup_user }}/.my.cnf
-
+  no_log: yes
 - name: Change file ownership, group and permissions
   ansible.builtin.file:
     path: /home/{{ backup_user }}/.my.cnf
