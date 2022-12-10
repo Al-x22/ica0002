@@ -56,7 +56,7 @@ dns_nsupdate_key: !vault |
           3331666632336233316661373061343465383266376631626232
 node_id: "{{ (ansible_port / 100) | int }}"
 # dnsvars
-startup_name: alba.pz
+startup_name: alba.pz # Use tag sname after changing
 
 allowed_addresses:
   -  192.168.42.0/23
@@ -69,7 +69,6 @@ forwarders:
 backup_server_ip: 192.168.42.132
 backup_server_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 mysql_backup_host: "{{ groups['db_servers'] | reject('eq', mysql_host) | first | default(mysql_host) }}"
-ka_version: 1.2.0
 
 mysql_port: 3306
 
@@ -81,7 +80,7 @@ agama_container_range: 2
 
 haproxy_stats_port: 9188
 haproxy_uri: monitor
-haproxy_exporter_port: 9875
+ka_version: 1.2.0
 
 # Prometheus Jobs Ports
 node_exporter_port: 9100
@@ -89,7 +88,7 @@ bind_exporter_port: 9119
 mysql_exporter_port: 9104
 nginx_exporter_port: 9113
 influxdb_exporter_port: 9324
-haproxy_prometheus_exporter_port: 9101
+haproxy_exporter_port: 9101
 keepalived_exporter_port: 9165
 
 prometheus_jobs:
@@ -121,7 +120,7 @@ prometheus_jobs:
     target_group: 
       - influxdb
   - name: haproxy
-    target_port: "{{ haproxy_prometheus_exporter_port }}"
+    target_port: "{{ haproxy_exporter_port }}"
     target_group: 
       -  lb1
       -  lb2

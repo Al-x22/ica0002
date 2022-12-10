@@ -14,7 +14,9 @@
       - init
       - node_exporter
       - backup
-    tags: init
+    tags: 
+      - init
+      - sname
       
   - name: Prometheus
     hosts: prometheus_servers
@@ -40,7 +42,9 @@
     roles:
       - bind 
       - bind_exporter
-    tags: bind
+    tags: 
+      - bind
+      - sname
  
   - name: DNS Records
     hosts: dns_masters
@@ -48,7 +52,9 @@
     become: y
     roles:
       - dns_records
-    tags: records
+    tags: 
+      - records
+      - sname
      
   - name: Resolve
     hosts: all
@@ -56,7 +62,9 @@
     become: y
     roles:
       - dns_change
-    tags: resolv
+    tags: 
+      - resolv
+      - sname
           
   - name: Database server
     hosts: db_servers
@@ -89,6 +97,7 @@
       - influxdb_backup
     tags: influxdb
     
+    
   - name: Docker
     hosts: docker_servers
     become: yes
@@ -103,7 +112,9 @@
     gather_facts: no
     roles:
       - grafana
-    tags: grafana
+    tags: 
+      - grafana
+      - sname
     
   - name: Agama Server
     hosts: agama_servers
