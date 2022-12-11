@@ -1,4 +1,4 @@
-L 10 dets  2022 21:46:46 EET
+P 11 dets  2022 16:49:53 EET
 + hostname
 alejandro-VirtualBox
 + ansible-playbook infra.yaml --diff
@@ -6,15 +6,15 @@ alejandro-VirtualBox
 PLAY [Setup] *******************************************************************
 
 TASK [Gathering Facts] *********************************************************
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 PLAY [Init] ********************************************************************
 
 TASK [init : Update APT cache] *************************************************
 ok: [Al-x22-3]
-ok: [Al-x22-1]
+changed: [Al-x22-1]
 changed: [Al-x22-2]
 
 TASK [init : Install certificates] *********************************************
@@ -25,7 +25,6 @@ Preconfiguring packages ...
 changed: [Al-x22-3]
 The following packages will be upgraded:
   ca-certificates
-Preconfiguring packages ...
 1 upgraded, 0 newly installed, 0 to remove and 230 not upgraded.
 changed: [Al-x22-1]
 The following packages will be upgraded:
@@ -44,7 +43,7 @@ The following NEW packages will be installed:
   moreutils prometheus-node-exporter prometheus-node-exporter-collectors
   smartmontools
 0 upgraded, 8 newly installed, 0 to remove and 230 not upgraded.
-changed: [Al-x22-1]
+changed: [Al-x22-3]
 The following additional packages will be installed:
   libio-pty-perl libipc-run-perl libtime-duration-perl libtimedate-perl
   moreutils prometheus-node-exporter-collectors smartmontools
@@ -66,29 +65,11 @@ The following NEW packages will be installed:
   moreutils prometheus-node-exporter prometheus-node-exporter-collectors
   smartmontools
 0 upgraded, 8 newly installed, 0 to remove and 230 not upgraded.
-changed: [Al-x22-3]
+changed: [Al-x22-1]
 
 TASK [node_exporter : Upload prometheus node exporter var conf] ****************
 --- before: /etc/default/prometheus-node-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpnhiq3j5i/prometheus-node-exporter
-@@ -2,7 +2,7 @@
- # Due to shell scaping, to pass backslashes for regexes, you need to double
- # them (\\d for \d). If running under systemd, you need to double them again
- # (\\\\d to mean \d), and escape newlines too.
--ARGS=""
-+ARGS="--web.listen-address=":9100""
- 
- # Prometheus-node-exporter supports the following options:
- #
-@@ -126,3 +126,4 @@
- #                            Set the log target and format. Example:
- #                            "logger:syslog?appname=bob&local=7" or
- #                            "logger:stdout?json=true"
-+
-
-changed: [Al-x22-1]
---- before: /etc/default/prometheus-node-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmplaks42z2/prometheus-node-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpd4kwvwck/prometheus-node-exporter
 @@ -2,7 +2,7 @@
  # Due to shell scaping, to pass backslashes for regexes, you need to double
  # them (\\d for \d). If running under systemd, you need to double them again
@@ -106,7 +87,25 @@ changed: [Al-x22-1]
 
 changed: [Al-x22-2]
 --- before: /etc/default/prometheus-node-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpy0ofaecf/prometheus-node-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpo3y2d9u3/prometheus-node-exporter
+@@ -2,7 +2,7 @@
+ # Due to shell scaping, to pass backslashes for regexes, you need to double
+ # them (\\d for \d). If running under systemd, you need to double them again
+ # (\\\\d to mean \d), and escape newlines too.
+-ARGS=""
++ARGS="--web.listen-address=":9100""
+ 
+ # Prometheus-node-exporter supports the following options:
+ #
+@@ -126,3 +126,4 @@
+ #                            Set the log target and format. Example:
+ #                            "logger:syslog?appname=bob&local=7" or
+ #                            "logger:stdout?json=true"
++
+
+changed: [Al-x22-1]
+--- before: /etc/default/prometheus-node-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp39ckz9vl/prometheus-node-exporter
 @@ -2,7 +2,7 @@
  # Due to shell scaping, to pass backslashes for regexes, you need to double
  # them (\\d for \d). If running under systemd, you need to double them again
@@ -125,43 +124,43 @@ changed: [Al-x22-2]
 changed: [Al-x22-3]
 
 TASK [node_exporter : Ensure node_exporters is always started please] **********
-ok: [Al-x22-1]
-ok: [Al-x22-3]
 ok: [Al-x22-2]
+ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [backup : Add the user 'backup' with a specific uid and a primary group of 'admin'] ***
+changed: [Al-x22-3]
 changed: [Al-x22-2]
 changed: [Al-x22-1]
-changed: [Al-x22-3]
 
 TASK [backup : Create a 2048-bit SSH key for user backup] **********************
+changed: [Al-x22-3]
 changed: [Al-x22-2]
 changed: [Al-x22-1]
-changed: [Al-x22-3]
 
 TASK [backup : Template a file to /home/backup/.ssh/known_hosts] ***************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp2jeu73c9/known_hosts
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpzy9x5i9r/known_hosts
 @@ -0,0 +1,3 @@
 +192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 +backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-+backup.albape.pz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-
-changed: [Al-x22-1]
---- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpjakb70sv/known_hosts
-@@ -0,0 +1,3 @@
-+192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-+backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-+backup.albape.pz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
++backup.alba.pz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 
 changed: [Al-x22-3]
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmprzt_7ahj/known_hosts
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp3gdomgc1/known_hosts
 @@ -0,0 +1,3 @@
 +192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 +backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
-+backup.albape.pz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
++backup.alba.pz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
+
+changed: [Al-x22-1]
+--- before
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpcmbv_zfb/known_hosts
+@@ -0,0 +1,3 @@
++192.168.42.132 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
++backup ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
++backup.alba.pz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu6pFFWyuRrl4WGFPQGElYN9txwTGm2wSntcpVAaN90
 
 changed: [Al-x22-2]
 
@@ -223,7 +222,7 @@ TASK [backup : Ensure path to backup restore exists] ***************************
 +    "state": "directory"
  }
 
-changed: [Al-x22-1]
+changed: [Al-x22-2]
 --- before
 +++ after
 @@ -1,6 +1,6 @@
@@ -237,7 +236,7 @@ changed: [Al-x22-1]
 +    "state": "directory"
  }
 
-changed: [Al-x22-2]
+changed: [Al-x22-1]
 --- before
 +++ after
 @@ -1,6 +1,6 @@
@@ -275,7 +274,7 @@ The following NEW packages will be installed:
   duplicity librsync2 python3-bcrypt python3-fasteners python3-future
   python3-lockfile python3-monotonic python3-paramiko
 0 upgraded, 8 newly installed, 0 to remove and 230 not upgraded.
-changed: [Al-x22-3]
+changed: [Al-x22-1]
 The following additional packages will be installed:
   librsync2 python3-bcrypt python3-fasteners python3-future python3-lockfile
   python3-monotonic python3-paramiko
@@ -286,11 +285,11 @@ The following NEW packages will be installed:
   duplicity librsync2 python3-bcrypt python3-fasteners python3-future
   python3-lockfile python3-monotonic python3-paramiko
 0 upgraded, 8 newly installed, 0 to remove and 230 not upgraded.
-changed: [Al-x22-1]
+changed: [Al-x22-3]
 
 RUNNING HANDLER [node_exporter : restart prometheus-node-exporter] *************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 changed: [Al-x22-3]
 
 PLAY [Prometheus] **************************************************************
@@ -318,11 +317,11 @@ ok: [Al-x22-3]
 
 TASK [prometheus : Upload prometheus environment var conf] *********************
 --- before: /etc/default/prometheus
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpzslsgl5y/prometheus
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp3xxgc5ia/prometheus
 @@ -1,5 +1,5 @@
  # Set the command-line arguments to pass to the server.
 -ARGS=""
-+ARGS="--web.external-url=http://193.40.156.67:29480/prometheus"
++ARGS="--web.external-url=http://193.40.156.67:45280/prometheus"
  
  # Prometheus supports the following options:
  #  --config.file="/etc/prometheus/prometheus.yml"
@@ -331,7 +330,7 @@ changed: [Al-x22-3]
 
 TASK [prometheus : Upload prometheus configuration] ****************************
 --- before: /etc/prometheus/prometheus.yml
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpa5wzwlmq/prometheus.yml
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpj9fs1xjz/prometheus.yml
 @@ -1,25 +1,8 @@
  # Sample config for Prometheus.
  
@@ -442,20 +441,6 @@ The following NEW packages will be installed:
   libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
   libwebp6 libxpm4 nginx nginx-common nginx-core
 0 upgraded, 17 newly installed, 0 to remove and 230 not upgraded.
-changed: [Al-x22-2]
-The following additional packages will be installed:
-  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
-  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
-  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
-  libwebp6 libxpm4 nginx-common nginx-core
-Suggested packages:
-  libgd-tools fcgiwrap nginx-doc ssl-cert
-The following NEW packages will be installed:
-  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
-  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
-  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
-  libwebp6 libxpm4 nginx nginx-common nginx-core
-0 upgraded, 17 newly installed, 0 to remove and 230 not upgraded.
 changed: [Al-x22-1]
 The following additional packages will be installed:
   fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
@@ -471,6 +456,20 @@ The following NEW packages will be installed:
   libwebp6 libxpm4 nginx nginx-common nginx-core
 0 upgraded, 17 newly installed, 0 to remove and 230 not upgraded.
 changed: [Al-x22-3]
+The following additional packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx-common nginx-core
+Suggested packages:
+  libgd-tools fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  fontconfig-config fonts-dejavu-core libfontconfig1 libgd3 libjbig0
+  libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5
+  libwebp6 libxpm4 nginx nginx-common nginx-core
+0 upgraded, 17 newly installed, 0 to remove and 230 not upgraded.
+changed: [Al-x22-2]
 
 TASK [nginx : Ensure nginx is always started please] ***************************
 ok: [Al-x22-2]
@@ -479,217 +478,7 @@ ok: [Al-x22-1]
 
 TASK [nginx : Nginx default configuration] *************************************
 --- before: /etc/nginx/sites-enabled/default
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp59zdwry0/default
-@@ -1,91 +1,14 @@
--##
--# You should look at the following URL's in order to grasp a solid understanding
--# of Nginx configuration files in order to fully unleash the power of Nginx.
--# https://www.nginx.com/resources/wiki/start/
--# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
--# https://wiki.debian.org/Nginx/DirectoryStructure
--#
--# In most cases, administrators will remove this file from sites-enabled/ and
--# leave it as reference inside of sites-available where it will continue to be
--# updated by the nginx packaging team.
--#
--# This file will automatically load configuration files provided by other
--# applications, such as Drupal or Wordpress. These applications will be made
--# available underneath a path with that package name, such as /drupal8.
--#
--# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
--##
--
--# Default server configuration
--#
- server {
- 	listen 80 default_server;
--	listen [::]:80 default_server;
--
--	# SSL configuration
--	#
--	# listen 443 ssl default_server;
--	# listen [::]:443 ssl default_server;
--	#
--	# Note: You should disable gzip for SSL traffic.
--	# See: https://bugs.debian.org/773332
--	#
--	# Read up on ssl_ciphers to ensure a secure configuration.
--	# See: https://bugs.debian.org/765782
--	#
--	# Self signed certs generated by the ssl-cert package
--	# Don't use them in a production server!
--	#
--	# include snippets/snakeoil.conf;
--
--	root /var/www/html;
--
--	# Add index.php to the list if you are using PHP
--	index index.html index.htm index.nginx-debian.html;
--
- 	server_name _;
- 
--	location / {
--		# First attempt to serve request as file, then
--		# as directory, then fall back to displaying a 404.
--		try_files $uri $uri/ =404;
--	}
--
--	# pass PHP scripts to FastCGI server
--	#
--	#location ~ \.php$ {
--	#	include snippets/fastcgi-php.conf;
--	#
--	#	# With php-fpm (or other unix sockets):
--	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
--	#	# With php-cgi (or other tcp sockets):
--	#	fastcgi_pass 127.0.0.1:9000;
--	#}
--
--	# deny access to .htaccess files, if Apache's document root
--	# concurs with nginx's one
--	#
--	#location ~ /\.ht {
--	#	deny all;
--	#}
-+		location / {
-+	        proxy_set_header Host $http_host;
-+		proxy_pass http://localhost:8001;
-+        }
-+				
-+	listen 8080 default_server;
-+        location = /stub_status {
-+         stub_status;
-+       }
- }
--
--
--# Virtual Host configuration for example.com
--#
--# You can move that to a different file under sites-available/ and symlink that
--# to sites-enabled/ to enable it.
--#
--#server {
--#	listen 80;
--#	listen [::]:80;
--#
--#	server_name example.com;
--#
--#	root /var/www/example.com;
--#	index index.html;
--#
--#	location / {
--#		try_files $uri $uri/ =404;
--#	}
--#}
-
-changed: [Al-x22-2]
---- before: /etc/nginx/sites-enabled/default
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpf03f_wry/default
-@@ -1,91 +1,14 @@
--##
--# You should look at the following URL's in order to grasp a solid understanding
--# of Nginx configuration files in order to fully unleash the power of Nginx.
--# https://www.nginx.com/resources/wiki/start/
--# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
--# https://wiki.debian.org/Nginx/DirectoryStructure
--#
--# In most cases, administrators will remove this file from sites-enabled/ and
--# leave it as reference inside of sites-available where it will continue to be
--# updated by the nginx packaging team.
--#
--# This file will automatically load configuration files provided by other
--# applications, such as Drupal or Wordpress. These applications will be made
--# available underneath a path with that package name, such as /drupal8.
--#
--# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
--##
--
--# Default server configuration
--#
- server {
- 	listen 80 default_server;
--	listen [::]:80 default_server;
--
--	# SSL configuration
--	#
--	# listen 443 ssl default_server;
--	# listen [::]:443 ssl default_server;
--	#
--	# Note: You should disable gzip for SSL traffic.
--	# See: https://bugs.debian.org/773332
--	#
--	# Read up on ssl_ciphers to ensure a secure configuration.
--	# See: https://bugs.debian.org/765782
--	#
--	# Self signed certs generated by the ssl-cert package
--	# Don't use them in a production server!
--	#
--	# include snippets/snakeoil.conf;
--
--	root /var/www/html;
--
--	# Add index.php to the list if you are using PHP
--	index index.html index.htm index.nginx-debian.html;
--
- 	server_name _;
- 
--	location / {
--		# First attempt to serve request as file, then
--		# as directory, then fall back to displaying a 404.
--		try_files $uri $uri/ =404;
--	}
--
--	# pass PHP scripts to FastCGI server
--	#
--	#location ~ \.php$ {
--	#	include snippets/fastcgi-php.conf;
--	#
--	#	# With php-fpm (or other unix sockets):
--	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
--	#	# With php-cgi (or other tcp sockets):
--	#	fastcgi_pass 127.0.0.1:9000;
--	#}
--
--	# deny access to .htaccess files, if Apache's document root
--	# concurs with nginx's one
--	#
--	#location ~ /\.ht {
--	#	deny all;
--	#}
-+		location / {
-+	        proxy_set_header Host $http_host;
-+		proxy_pass http://localhost:8001;
-+        }
-+				
-+	listen 8080 default_server;
-+        location = /stub_status {
-+         stub_status;
-+       }
- }
--
--
--# Virtual Host configuration for example.com
--#
--# You can move that to a different file under sites-available/ and symlink that
--# to sites-enabled/ to enable it.
--#
--#server {
--#	listen 80;
--#	listen [::]:80;
--#
--#	server_name example.com;
--#
--#	root /var/www/example.com;
--#	index index.html;
--#
--#	location / {
--#		try_files $uri $uri/ =404;
--#	}
--#}
-
-changed: [Al-x22-1]
---- before: /etc/nginx/sites-enabled/default
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmplfhqtrkk/default
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpeg969jcv/default
 @@ -1,91 +1,17 @@
 -##
 -# You should look at the following URL's in order to grasp a solid understanding
@@ -795,6 +584,216 @@ changed: [Al-x22-1]
 -#}
 
 changed: [Al-x22-3]
+--- before: /etc/nginx/sites-enabled/default
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpe571oh44/default
+@@ -1,91 +1,14 @@
+-##
+-# You should look at the following URL's in order to grasp a solid understanding
+-# of Nginx configuration files in order to fully unleash the power of Nginx.
+-# https://www.nginx.com/resources/wiki/start/
+-# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+-# https://wiki.debian.org/Nginx/DirectoryStructure
+-#
+-# In most cases, administrators will remove this file from sites-enabled/ and
+-# leave it as reference inside of sites-available where it will continue to be
+-# updated by the nginx packaging team.
+-#
+-# This file will automatically load configuration files provided by other
+-# applications, such as Drupal or Wordpress. These applications will be made
+-# available underneath a path with that package name, such as /drupal8.
+-#
+-# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+-##
+-
+-# Default server configuration
+-#
+ server {
+ 	listen 80 default_server;
+-	listen [::]:80 default_server;
+-
+-	# SSL configuration
+-	#
+-	# listen 443 ssl default_server;
+-	# listen [::]:443 ssl default_server;
+-	#
+-	# Note: You should disable gzip for SSL traffic.
+-	# See: https://bugs.debian.org/773332
+-	#
+-	# Read up on ssl_ciphers to ensure a secure configuration.
+-	# See: https://bugs.debian.org/765782
+-	#
+-	# Self signed certs generated by the ssl-cert package
+-	# Don't use them in a production server!
+-	#
+-	# include snippets/snakeoil.conf;
+-
+-	root /var/www/html;
+-
+-	# Add index.php to the list if you are using PHP
+-	index index.html index.htm index.nginx-debian.html;
+-
+ 	server_name _;
+ 
+-	location / {
+-		# First attempt to serve request as file, then
+-		# as directory, then fall back to displaying a 404.
+-		try_files $uri $uri/ =404;
+-	}
+-
+-	# pass PHP scripts to FastCGI server
+-	#
+-	#location ~ \.php$ {
+-	#	include snippets/fastcgi-php.conf;
+-	#
+-	#	# With php-fpm (or other unix sockets):
+-	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+-	#	# With php-cgi (or other tcp sockets):
+-	#	fastcgi_pass 127.0.0.1:9000;
+-	#}
+-
+-	# deny access to .htaccess files, if Apache's document root
+-	# concurs with nginx's one
+-	#
+-	#location ~ /\.ht {
+-	#	deny all;
+-	#}
++		location / {
++	        proxy_set_header Host $http_host;
++		proxy_pass http://localhost:8001;
++        }
++				
++	listen 8080 default_server;
++        location = /stub_status {
++         stub_status;
++       }
+ }
+-
+-
+-# Virtual Host configuration for example.com
+-#
+-# You can move that to a different file under sites-available/ and symlink that
+-# to sites-enabled/ to enable it.
+-#
+-#server {
+-#	listen 80;
+-#	listen [::]:80;
+-#
+-#	server_name example.com;
+-#
+-#	root /var/www/example.com;
+-#	index index.html;
+-#
+-#	location / {
+-#		try_files $uri $uri/ =404;
+-#	}
+-#}
+
+changed: [Al-x22-1]
+--- before: /etc/nginx/sites-enabled/default
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp4lk6sa4b/default
+@@ -1,91 +1,14 @@
+-##
+-# You should look at the following URL's in order to grasp a solid understanding
+-# of Nginx configuration files in order to fully unleash the power of Nginx.
+-# https://www.nginx.com/resources/wiki/start/
+-# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+-# https://wiki.debian.org/Nginx/DirectoryStructure
+-#
+-# In most cases, administrators will remove this file from sites-enabled/ and
+-# leave it as reference inside of sites-available where it will continue to be
+-# updated by the nginx packaging team.
+-#
+-# This file will automatically load configuration files provided by other
+-# applications, such as Drupal or Wordpress. These applications will be made
+-# available underneath a path with that package name, such as /drupal8.
+-#
+-# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+-##
+-
+-# Default server configuration
+-#
+ server {
+ 	listen 80 default_server;
+-	listen [::]:80 default_server;
+-
+-	# SSL configuration
+-	#
+-	# listen 443 ssl default_server;
+-	# listen [::]:443 ssl default_server;
+-	#
+-	# Note: You should disable gzip for SSL traffic.
+-	# See: https://bugs.debian.org/773332
+-	#
+-	# Read up on ssl_ciphers to ensure a secure configuration.
+-	# See: https://bugs.debian.org/765782
+-	#
+-	# Self signed certs generated by the ssl-cert package
+-	# Don't use them in a production server!
+-	#
+-	# include snippets/snakeoil.conf;
+-
+-	root /var/www/html;
+-
+-	# Add index.php to the list if you are using PHP
+-	index index.html index.htm index.nginx-debian.html;
+-
+ 	server_name _;
+ 
+-	location / {
+-		# First attempt to serve request as file, then
+-		# as directory, then fall back to displaying a 404.
+-		try_files $uri $uri/ =404;
+-	}
+-
+-	# pass PHP scripts to FastCGI server
+-	#
+-	#location ~ \.php$ {
+-	#	include snippets/fastcgi-php.conf;
+-	#
+-	#	# With php-fpm (or other unix sockets):
+-	#	fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+-	#	# With php-cgi (or other tcp sockets):
+-	#	fastcgi_pass 127.0.0.1:9000;
+-	#}
+-
+-	# deny access to .htaccess files, if Apache's document root
+-	# concurs with nginx's one
+-	#
+-	#location ~ /\.ht {
+-	#	deny all;
+-	#}
++		location / {
++	        proxy_set_header Host $http_host;
++		proxy_pass http://localhost:8001;
++        }
++				
++	listen 8080 default_server;
++        location = /stub_status {
++         stub_status;
++       }
+ }
+-
+-
+-# Virtual Host configuration for example.com
+-#
+-# You can move that to a different file under sites-available/ and symlink that
+-# to sites-enabled/ to enable it.
+-#
+-#server {
+-#	listen 80;
+-#	listen [::]:80;
+-#
+-#	server_name example.com;
+-#
+-#	root /var/www/example.com;
+-#	index index.html;
+-#
+-#	location / {
+-#		try_files $uri $uri/ =404;
+-#	}
+-#}
+
+changed: [Al-x22-2]
 
 TASK [nginx_exporter : Install nginx exporter] *********************************
 The following NEW packages will be installed:
@@ -866,13 +865,13 @@ changed: [Al-x22-2]
 
 TASK [bind : Bind is started] **************************************************
 ok: [Al-x22-3]
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [bind : Upload bind9 configuration] ***************************************
-changed: [Al-x22-2]
-changed: [Al-x22-1]
 changed: [Al-x22-3]
+changed: [Al-x22-1]
+changed: [Al-x22-2]
 
 TASK [bind : Upload bind9 local configuration] *********************************
 changed: [Al-x22-3]
@@ -897,15 +896,26 @@ changed: [Al-x22-1]
 The following NEW packages will be installed:
   prometheus-bind-exporter
 0 upgraded, 1 newly installed, 0 to remove and 228 not upgraded.
-changed: [Al-x22-3]
+changed: [Al-x22-2]
 The following NEW packages will be installed:
   prometheus-bind-exporter
 0 upgraded, 1 newly installed, 0 to remove and 228 not upgraded.
-changed: [Al-x22-2]
+changed: [Al-x22-3]
 
 TASK [bind_exporter : Upload prometheus bind exporter var conf] ****************
 --- before: /etc/default/prometheus-bind-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpd0csy1rl/prometheus-bind-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpl370ojp4/prometheus-bind-exporter
+@@ -1,5 +1,5 @@
+ # Set the command-line arguments to pass to the server.
+-ARGS=''
++ARGS='-web.listen-address=":9119"'
+ 
+ # Usage of prometheus-bind-exporter:
+ #  -bind.pid-file string
+
+changed: [Al-x22-3]
+--- before: /etc/default/prometheus-bind-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp1dge6yk2/prometheus-bind-exporter
 @@ -1,5 +1,5 @@
  # Set the command-line arguments to pass to the server.
 -ARGS=''
@@ -916,18 +926,7 @@ TASK [bind_exporter : Upload prometheus bind exporter var conf] ****************
 
 changed: [Al-x22-1]
 --- before: /etc/default/prometheus-bind-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmploxpazfv/prometheus-bind-exporter
-@@ -1,5 +1,5 @@
- # Set the command-line arguments to pass to the server.
--ARGS=''
-+ARGS='-web.listen-address=":9119"'
- 
- # Usage of prometheus-bind-exporter:
- #  -bind.pid-file string
-
-changed: [Al-x22-3]
---- before: /etc/default/prometheus-bind-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp1jlpr447/prometheus-bind-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp0n_aaxdk/prometheus-bind-exporter
 @@ -1,5 +1,5 @@
  # Set the command-line arguments to pass to the server.
 -ARGS=''
@@ -945,21 +944,21 @@ ok: [Al-x22-2]
 
 RUNNING HANDLER [bind : restart bind9] *****************************************
 changed: [Al-x22-3]
-changed: [Al-x22-2]
 changed: [Al-x22-1]
+changed: [Al-x22-2]
 
 RUNNING HANDLER [bind : Restart dns zone] **************************************
 changed: [Al-x22-3]
 
 RUNNING HANDLER [bind_exporter : restart prometheus-bind-exporter] *************
-changed: [Al-x22-1]
 changed: [Al-x22-3]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 RUNNING HANDLER [bind_exporter : daemon reload] ********************************
-ok: [Al-x22-1]
 ok: [Al-x22-3]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 PLAY [DNS Records] *************************************************************
 
@@ -990,13 +989,13 @@ changed: [Al-x22-3] => (item={'key': 'web3', 'value': 'Al-x22-3'})
 PLAY [Resolve] *****************************************************************
 
 TASK [dns_change : Disable systemd-resolved] ***********************************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
 changed: [Al-x22-3]
+changed: [Al-x22-1]
 
 TASK [dns_change : Update resolv.conf] *****************************************
 --- before: /etc/resolv.conf
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp82f7bth3/resolv.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpzyaqyry4/resolv.conf
 @@ -1,19 +1,4 @@
 -# This file is managed by man:systemd-resolved(8). Do not edit.
 -#
@@ -1013,36 +1012,9 @@ TASK [dns_change : Update resolv.conf] *****************************************
 -#
 -# See man:systemd-resolved.service(8) for details about the supported modes of
 -# operation for /etc/resolv.conf.
-+search albape.pz
-+nameserver 192.168.43.173
-+nameserver 192.168.43.148
- 
--nameserver 127.0.0.53
--options edns0 trust-ad
--search openstacklocal
-
-changed: [Al-x22-1]
---- before: /etc/resolv.conf
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpbsj5412h/resolv.conf
-@@ -1,19 +1,4 @@
--# This file is managed by man:systemd-resolved(8). Do not edit.
--#
--# This is a dynamic resolv.conf file for connecting local clients to the
--# internal DNS stub resolver of systemd-resolved. This file lists all
--# configured search domains.
--#
--# Run "resolvectl status" to see details about the uplink DNS servers
--# currently in use.
--#
--# Third party programs must not access this file directly, but only through the
--# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
--# replace this symlink by a static file or a different symlink.
--#
--# See man:systemd-resolved.service(8) for details about the supported modes of
--# operation for /etc/resolv.conf.
-+search albape.pz
-+nameserver 192.168.43.173
-+nameserver 192.168.43.148
++search alba.pz
++nameserver 192.168.43.177
++nameserver 192.168.43.34
  
 -nameserver 127.0.0.53
 -options edns0 trust-ad
@@ -1050,7 +1022,7 @@ changed: [Al-x22-1]
 
 changed: [Al-x22-2]
 --- before: /etc/resolv.conf
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpkz7guj62/resolv.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpebahz4fz/resolv.conf
 @@ -1,19 +1,4 @@
 -# This file is managed by man:systemd-resolved(8). Do not edit.
 -#
@@ -1067,9 +1039,36 @@ changed: [Al-x22-2]
 -#
 -# See man:systemd-resolved.service(8) for details about the supported modes of
 -# operation for /etc/resolv.conf.
-+search albape.pz
-+nameserver 192.168.43.173
-+nameserver 192.168.43.148
++search alba.pz
++nameserver 192.168.43.177
++nameserver 192.168.43.34
+ 
+-nameserver 127.0.0.53
+-options edns0 trust-ad
+-search openstacklocal
+
+changed: [Al-x22-1]
+--- before: /etc/resolv.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpmv5624uq/resolv.conf
+@@ -1,19 +1,4 @@
+-# This file is managed by man:systemd-resolved(8). Do not edit.
+-#
+-# This is a dynamic resolv.conf file for connecting local clients to the
+-# internal DNS stub resolver of systemd-resolved. This file lists all
+-# configured search domains.
+-#
+-# Run "resolvectl status" to see details about the uplink DNS servers
+-# currently in use.
+-#
+-# Third party programs must not access this file directly, but only through the
+-# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+-# replace this symlink by a static file or a different symlink.
+-#
+-# See man:systemd-resolved.service(8) for details about the supported modes of
+-# operation for /etc/resolv.conf.
++search alba.pz
++nameserver 192.168.43.177
++nameserver 192.168.43.34
  
 -nameserver 127.0.0.53
 -options edns0 trust-ad
@@ -1119,29 +1118,29 @@ changed: [Al-x22-1]
 
 TASK [mysql : Copy file override.cnf] ******************************************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp4aluu0bv/override.cnf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpsgcrjcsc/override.cnf
 @@ -0,0 +1,7 @@
 +[mysqld]
 +bind-address = 0.0.0.0
 +log-bin = /var/log/mysql/mysql-bin.log
 +relay-log = /var/log/mysql/mysql-relay.log
 +replicate-do-db = agama
-+server-id = 429
-+port = 3306
-
-changed: [Al-x22-1]
---- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp4gc4bjtt/override.cnf
-@@ -0,0 +1,7 @@
-+[mysqld]
-+bind-address = 0.0.0.0
-+log-bin = /var/log/mysql/mysql-bin.log
-+relay-log = /var/log/mysql/mysql-relay.log
-+replicate-do-db = agama
-+server-id = 404
++server-id = 290
 +port = 3306
 
 changed: [Al-x22-2]
+--- before
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpe5gzkxfe/override.cnf
+@@ -0,0 +1,7 @@
++[mysqld]
++bind-address = 0.0.0.0
++log-bin = /var/log/mysql/mysql-bin.log
++relay-log = /var/log/mysql/mysql-relay.log
++replicate-do-db = agama
++server-id = 433
++port = 3306
+
+changed: [Al-x22-1]
 
 TASK [mysql : Ensure sql is always started please] *****************************
 ok: [Al-x22-2]
@@ -1153,37 +1152,37 @@ Suggested packages:
 The following NEW packages will be installed:
   python3-pymysql
 0 upgraded, 1 newly installed, 0 to remove and 228 not upgraded.
-changed: [Al-x22-1]
+changed: [Al-x22-2]
 Suggested packages:
   python-pymysql-doc
 The following NEW packages will be installed:
   python3-pymysql
 0 upgraded, 1 newly installed, 0 to remove and 228 not upgraded.
-changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [mysql : MySQL database] **************************************************
 changed: [Al-x22-2]
 changed: [Al-x22-1]
 
 TASK [mysql : MySQL user for agama] ********************************************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [mysql : MySQL user for Exporter] *****************************************
 changed: [Al-x22-2]
 changed: [Al-x22-1]
 
 TASK [mysql : MySQL user for Replication] **************************************
-changed: [Al-x22-2]
 changed: [Al-x22-1]
+changed: [Al-x22-2]
 
 TASK [mysql : Add read only mode to secondary mysql server] ********************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [mysql_exporter : Upload prometheus mysqld cnf configuration] *************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [mysql_exporter : Install mysql_exporters] ********************************
 The following additional packages will be installed:
@@ -1234,8 +1233,8 @@ ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [mysql_exporter : Upload prometheus-mysqld-exporter configuration] ********
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [mysql_backup : Ensure path to mysql backup exists] ***********************
 --- before
@@ -1289,7 +1288,7 @@ TASK [mysql_backup : Change file ownership, group and permissions] *************
      "path": "/home/backup/.my.cnf"
  }
 
-changed: [Al-x22-1]
+changed: [Al-x22-2]
 --- before
 +++ after
 @@ -1,6 +1,6 @@
@@ -1303,7 +1302,7 @@ changed: [Al-x22-1]
      "path": "/home/backup/.my.cnf"
  }
 
-changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [mysql_backup : Upload cron backup-mysql] *********************************
 changed: [Al-x22-1]
@@ -1330,14 +1329,14 @@ changed: [Al-x22-1] => (item=resetprimary)
 changed: [Al-x22-1] => (item=startreplica)
 
 RUNNING HANDLER [mysql_exporter : restart prometheus-mysqld-exporter] **********
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 PLAY [Rsyslog Remote Log] ******************************************************
 
 TASK [rsyslog : Add Telegraf rsyslog conf file] ********************************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp8t_juhc4/15-telegraf.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpwngi44_r/15-telegraf.conf
 @@ -0,0 +1,7 @@
 +$ActionQueueType LinkedList # use asynchronous processing
 +$ActionQueueFileName srvrfwd # set file name, also enables disk mode
@@ -1349,7 +1348,7 @@ TASK [rsyslog : Add Telegraf rsyslog conf file] ********************************
 
 changed: [Al-x22-2]
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmppo8imktz/15-telegraf.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpksb25ygt/15-telegraf.conf
 @@ -0,0 +1,7 @@
 +$ActionQueueType LinkedList # use asynchronous processing
 +$ActionQueueFileName srvrfwd # set file name, also enables disk mode
@@ -1361,7 +1360,7 @@ changed: [Al-x22-2]
 
 changed: [Al-x22-1]
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpi2bk_z8s/15-telegraf.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpw4hwo5zx/15-telegraf.conf
 @@ -0,0 +1,7 @@
 +$ActionQueueType LinkedList # use asynchronous processing
 +$ActionQueueFileName srvrfwd # set file name, also enables disk mode
@@ -1374,8 +1373,8 @@ changed: [Al-x22-1]
 changed: [Al-x22-3]
 
 RUNNING HANDLER [rsyslog : restart rsyslog] ************************************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 changed: [Al-x22-3]
 
 PLAY [InfluxDB] ****************************************************************
@@ -1397,7 +1396,7 @@ changed: [Al-x22-3]
 
 TASK [influxdb : Add InfluxDB conf file] ***************************************
 --- before: /etc/influxdb/influxdb.conf
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpn2u0to_1/influxdb.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpf4as4kjz/influxdb.conf
 @@ -1,596 +1,22 @@
 -### Welcome to the InfluxDB configuration file.
 -
@@ -2039,7 +2038,7 @@ changed: [Al-x22-3]
 
 TASK [pinger : Add pinger shell to vm in /usr/local/bin] ***********************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmphktir5i8/pinger.sh
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmptxncnwhx/pinger.sh
 @@ -0,0 +1,26 @@
 +#!/bin/bash
 +
@@ -2072,7 +2071,7 @@ changed: [Al-x22-3]
 
 TASK [pinger : Add Pinger Service] *********************************************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp_sxhtt6x/pinger.service
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp7nqfpg8e/pinger.service
 @@ -0,0 +1,10 @@
 +[Unit]
 +Description=Ping Service used to automate ping requests to diverse addresses
@@ -2104,9 +2103,9 @@ changed: [Al-x22-3]
 
 TASK [pinger : Add pinger conf to vm] ******************************************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmprf_6rga9/pinger.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpmzd7wv68/pinger.conf
 @@ -0,0 +1,3 @@
-+database_url=http://influxdb.albape.pz:8086
++database_url=http://influxdb:8086
 +database_name=latency
 +targets=google.com,cloudflare.com,twitter.com,facebook.com
 
@@ -2137,7 +2136,7 @@ changed: [Al-x22-3]
 
 TASK [influxdb_exporter : Add Influxdb Exporter Service] ***********************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp105jfqby/prometheus-influxdb-stats-exporter.service
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp9e_6knj2/prometheus-influxdb-stats-exporter.service
 @@ -0,0 +1,10 @@
 +[Unit]
 +Description=Service to start influx_stats_exporter
@@ -2186,6 +2185,17 @@ The following NEW packages will be installed:
   bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
   python3-websocket runc ubuntu-fan
 0 upgraded, 10 newly installed, 0 to remove and 228 not upgraded.
+changed: [Al-x22-3]
+The following additional packages will be installed:
+  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
+  ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
+  rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
+  python3-websocket runc ubuntu-fan
+0 upgraded, 10 newly installed, 0 to remove and 228 not upgraded.
 changed: [Al-x22-1]
 The following additional packages will be installed:
   bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
@@ -2198,22 +2208,11 @@ The following NEW packages will be installed:
   python3-websocket runc ubuntu-fan
 0 upgraded, 10 newly installed, 0 to remove and 228 not upgraded.
 changed: [Al-x22-2]
-The following additional packages will be installed:
-  bridge-utils containerd dnsmasq-base libidn11 pigz python3-websocket runc
-  ubuntu-fan
-Suggested packages:
-  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
-  rinse zfs-fuse | zfsutils
-The following NEW packages will be installed:
-  bridge-utils containerd dnsmasq-base docker.io libidn11 pigz python3-docker
-  python3-websocket runc ubuntu-fan
-0 upgraded, 10 newly installed, 0 to remove and 228 not upgraded.
-changed: [Al-x22-3]
 
 TASK [docker : Docker is started] **********************************************
+ok: [Al-x22-1]
 ok: [Al-x22-2]
 ok: [Al-x22-3]
-ok: [Al-x22-1]
 
 PLAY [Grafana] *****************************************************************
 
@@ -5946,9 +5945,9 @@ changed: [Al-x22-3]
 
 TASK [grafana : Upload grafana prometheus data source] *************************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpukzgcmwk/datasources.yaml
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmppd2rjwns/datasources.yaml
 @@ -0,0 +1,35 @@
-+# config file version
++# config file for alba.pz
 +apiVersion: 1
 +
 +datasources:
@@ -6010,7 +6009,7 @@ TASK [agama : Agama Doker directory /opt/agama] ********************************
 +    "state": "directory"
  }
 
-changed: [Al-x22-1]
+changed: [Al-x22-2]
 --- before
 +++ after
 @@ -1,4 +1,4 @@
@@ -6020,30 +6019,19 @@ changed: [Al-x22-1]
 +    "state": "directory"
  }
 
-changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [agama : Install agama.py and agama raw image in docker /opt dir] *********
 changed: [Al-x22-1] => (item=agama.py)
 changed: [Al-x22-2] => (item=agama.py)
-changed: [Al-x22-2] => (item=Dockerfile)
 changed: [Al-x22-1] => (item=Dockerfile)
+changed: [Al-x22-2] => (item=Dockerfile)
 
 TASK [agama : Build agama image] ***********************************************
 changed: [Al-x22-1]
 changed: [Al-x22-2]
 
 TASK [agama : Add Agama to Docker provisioning] ********************************
---- before
-+++ after
-@@ -1,4 +1,4 @@
- {
--    "exists": false,
--    "running": false
-+    "exists": true,
-+    "running": true
- }
-
-changed: [Al-x22-2] => (item=0)
 --- before
 +++ after
 @@ -1,4 +1,4 @@
@@ -6065,7 +6053,7 @@ changed: [Al-x22-1] => (item=0)
 +    "running": true
  }
 
-changed: [Al-x22-2] => (item=1)
+changed: [Al-x22-2] => (item=0)
 --- before
 +++ after
 @@ -1,4 +1,4 @@
@@ -6077,6 +6065,17 @@ changed: [Al-x22-2] => (item=1)
  }
 
 changed: [Al-x22-1] => (item=1)
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+-    "exists": false,
+-    "running": false
++    "exists": true,
++    "running": true
+ }
+
+changed: [Al-x22-2] => (item=1)
 
 PLAY [Haproxy Server] **********************************************************
 
@@ -6100,7 +6099,7 @@ changed: [Al-x22-2]
 
 TASK [haproxy : Upload haproxy configuration] **********************************
 --- before: /etc/haproxy/haproxy.cfg
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp8t2aj56_/haproxy.cfg
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpta40ocnu/haproxy.cfg
 @@ -1,34 +1,39 @@
  global
 -	log /dev/log	local0
@@ -6175,7 +6174,7 @@ TASK [haproxy : Upload haproxy configuration] **********************************
 
 changed: [Al-x22-2]
 --- before: /etc/haproxy/haproxy.cfg
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpp1w7pfr8/haproxy.cfg
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpj874dzb0/haproxy.cfg
 @@ -1,34 +1,39 @@
  global
 -	log /dev/log	local0
@@ -6266,48 +6265,7 @@ changed: [Al-x22-2]
 
 TASK [haproxy_exporter : Upload haproxy exporter configuration] ****************
 --- before: /etc/default/prometheus-haproxy-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmp32tgao8c/prometheus-haproxy-exporter
-@@ -1,35 +1 @@
--# Set the command-line arguments to pass to the server.
--# Due to shell scaping, to pass backslashes for regexes, you need to double
--# them (\\d for \d). If running under systemd, you need to double them again
--# (\\\\d to mean \d), and escape newlines too.
--ARGS=""
--
--# Prometheus-haproxy-exporter supports the following options:
--#
--#  --web.listen-address=":9101"
--#    Address to listen on for web interface and telemetry.
--#  --web.telemetry-path="/metrics"
--#    Path under which to expose metrics.
--#  --haproxy.scrape-uri="http://localhost/;csv"
--#    URI on which to scrape HAProxy.
--#  --haproxy.ssl-verify
--#    Flag that enables SSL certificate verification for the scrape URI
--#  --haproxy.server-metric-fields="2,3,4,5,6,7,8,9,13,14,15,16,17,18,21,24,33,35,38,39,40,41,42,43,44"
--#    Comma-separated list of exported server metrics. See
--#    http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#9.1
--#  --haproxy.timeout=5s
--#    Timeout for trying to get stats from HAProxy.
--#  --haproxy.pid-file=""
--#    Path to HAProxy pid file.
--#
--#    If provided, the standard process metrics get exported for the HAProxy
--#    process, prefixed with 'haproxy_process_...'. The haproxy_process exporter
--#    needs to have read access to files owned by the HAProxy process. Depends
--#    on the availability of /proc.
--#    https://prometheus.io/docs/instrumenting/writing_clientlibs/#process-metrics.
--#  --log.level="info"
--#    Only log messages with the given severity or above.
--#    Valid levels: [debug, info, warn, error, fatal]
--#  --log.format="logger:stderr"
--#    Set the log target and format. Example:
--#    "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
-+ARGS="--haproxy.scrape-uri='http://localhost:9188/monitor;csv' --web.listen-address=":9101""
-
-changed: [Al-x22-1]
---- before: /etc/default/prometheus-haproxy-exporter
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpikxl2mxg/prometheus-haproxy-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp7s78y9wm/prometheus-haproxy-exporter
 @@ -1,35 +1 @@
 -# Set the command-line arguments to pass to the server.
 -# Due to shell scaping, to pass backslashes for regexes, you need to double
@@ -6347,10 +6305,51 @@ changed: [Al-x22-1]
 +ARGS="--haproxy.scrape-uri='http://localhost:9188/monitor;csv' --web.listen-address=":9101""
 
 changed: [Al-x22-2]
+--- before: /etc/default/prometheus-haproxy-exporter
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpnd2vxl1_/prometheus-haproxy-exporter
+@@ -1,35 +1 @@
+-# Set the command-line arguments to pass to the server.
+-# Due to shell scaping, to pass backslashes for regexes, you need to double
+-# them (\\d for \d). If running under systemd, you need to double them again
+-# (\\\\d to mean \d), and escape newlines too.
+-ARGS=""
+-
+-# Prometheus-haproxy-exporter supports the following options:
+-#
+-#  --web.listen-address=":9101"
+-#    Address to listen on for web interface and telemetry.
+-#  --web.telemetry-path="/metrics"
+-#    Path under which to expose metrics.
+-#  --haproxy.scrape-uri="http://localhost/;csv"
+-#    URI on which to scrape HAProxy.
+-#  --haproxy.ssl-verify
+-#    Flag that enables SSL certificate verification for the scrape URI
+-#  --haproxy.server-metric-fields="2,3,4,5,6,7,8,9,13,14,15,16,17,18,21,24,33,35,38,39,40,41,42,43,44"
+-#    Comma-separated list of exported server metrics. See
+-#    http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#9.1
+-#  --haproxy.timeout=5s
+-#    Timeout for trying to get stats from HAProxy.
+-#  --haproxy.pid-file=""
+-#    Path to HAProxy pid file.
+-#
+-#    If provided, the standard process metrics get exported for the HAProxy
+-#    process, prefixed with 'haproxy_process_...'. The haproxy_process exporter
+-#    needs to have read access to files owned by the HAProxy process. Depends
+-#    on the availability of /proc.
+-#    https://prometheus.io/docs/instrumenting/writing_clientlibs/#process-metrics.
+-#  --log.level="info"
+-#    Only log messages with the given severity or above.
+-#    Valid levels: [debug, info, warn, error, fatal]
+-#  --log.format="logger:stderr"
+-#    Set the log target and format. Example:
+-#    "logger:syslog?appname=bob&local=7" or "logger:stdout?json=true"
++ARGS="--haproxy.scrape-uri='http://localhost:9188/monitor;csv' --web.listen-address=":9101""
+
+changed: [Al-x22-1]
 
 TASK [haproxy_exporter : haproxy exporter is started] **************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived : Add Keepalived service] *************************************
 The following additional packages will be installed:
@@ -6376,7 +6375,7 @@ changed: [Al-x22-1]
 
 TASK [keepalived : Upload keepalived configuration] ****************************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpy2bk5xfj/keepalived.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp6czccn14/keepalived.conf
 @@ -0,0 +1,22 @@
 +vrrp_script check_haproxy {                 
 +    script "/usr/local/bin/check_haproxy.sh" 
@@ -6391,10 +6390,10 @@ TASK [keepalived : Upload keepalived configuration] ****************************
 +      
 +    advert_int 1                            
 +    virtual_ipaddress {                     
-+                192.168.101.173/24                
++                192.168.101.177/24                
 +    }
 +    unicast_peer {                          
-+                192.168.43.148
++                192.168.43.34
 +            }
 +    track_script {
 +        check_haproxy
@@ -6403,7 +6402,7 @@ TASK [keepalived : Upload keepalived configuration] ****************************
 
 changed: [Al-x22-1]
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpa5uxowbd/keepalived.conf
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmprd1j0buh/keepalived.conf
 @@ -0,0 +1,21 @@
 +vrrp_script check_haproxy {                 
 +    script "/usr/local/bin/check_haproxy.sh" 
@@ -6417,10 +6416,10 @@ changed: [Al-x22-1]
 +      
 +    advert_int 1                            
 +    virtual_ipaddress {                     
-+                192.168.101.173/24                
++                192.168.101.177/24                
 +    }
 +    unicast_peer {                          
-+                192.168.43.173
++                192.168.43.177
 +            }
 +    track_script {
 +        check_haproxy
@@ -6431,50 +6430,35 @@ changed: [Al-x22-2]
 
 TASK [keepalived : Upload keepalived configuration] ****************************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpm0m660mc/check_haproxy.sh.j2
-@@ -0,0 +1,2 @@
-+#!/bin/bash
-+ss -ntl | grep -q ':88 '
-
-changed: [Al-x22-1]
---- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpt25z5ltc/check_haproxy.sh.j2
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmplxrowbml/check_haproxy.sh.j2
 @@ -0,0 +1,2 @@
 +#!/bin/bash
 +ss -ntl | grep -q ':88 '
 
 changed: [Al-x22-2]
+--- before
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp9s0s4n97/check_haproxy.sh.j2
+@@ -0,0 +1,2 @@
++#!/bin/bash
++ss -ntl | grep -q ':88 '
+
+changed: [Al-x22-1]
 
 TASK [keepalived : keepalived is started] **************************************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [keepalived_exporter : Download keepalived exporter] **********************
 changed: [Al-x22-2]
 changed: [Al-x22-1]
 
 TASK [keepalived_exporter : Extract Keepalived exporter from tar.gz file] ******
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 TASK [keepalived_exporter : Add keepalived exporter Service] *******************
 --- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmpjxkfligz/keepalived-exporter.service
-@@ -0,0 +1,10 @@
-+[Unit]
-+Description=Exporter for keepalive data
-+After=network-online.target
-+
-+[Service]
-+User=root
-+ExecStart=/usr/local/bin/keepalived-exporter-1.2.0.linux-amd64/keepalived-exporter --web.listen-address=':9165' 
-+
-+[Install]
-+WantedBy=multi-user.target
-
-changed: [Al-x22-1]
---- before
-+++ after: /home/alejandro/.ansible/tmp/ansible-local-41897yvnwi8u/tmphtgjngkw/keepalived-exporter.service
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmp8jz04l4a/keepalived-exporter.service
 @@ -0,0 +1,10 @@
 +[Unit]
 +Description=Exporter for keepalive data
@@ -6488,33 +6472,48 @@ changed: [Al-x22-1]
 +WantedBy=multi-user.target
 
 changed: [Al-x22-2]
+--- before
++++ after: /home/alejandro/.ansible/tmp/ansible-local-358239d9wp9c/tmpv_g1gq93/keepalived-exporter.service
+@@ -0,0 +1,10 @@
++[Unit]
++Description=Exporter for keepalive data
++After=network-online.target
++
++[Service]
++User=root
++ExecStart=/usr/local/bin/keepalived-exporter-1.2.0.linux-amd64/keepalived-exporter --web.listen-address=':9165' 
++
++[Install]
++WantedBy=multi-user.target
+
+changed: [Al-x22-1]
 
 TASK [keepalived_exporter : Just force systemd to reread configs (2.4 and above)] ***
 ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [keepalived_exporter : Start keepalived uncodnitionally] ******************
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 RUNNING HANDLER [haproxy : restart haproxy] ************************************
 changed: [Al-x22-2]
 changed: [Al-x22-1]
 
 RUNNING HANDLER [haproxy_exporter : restart prometheus-haproxy-exporter] *******
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 RUNNING HANDLER [keepalived : restart keepalived] ******************************
 changed: [Al-x22-2]
 changed: [Al-x22-1]
 
 RUNNING HANDLER [keepalived_exporter : restart keepalived exporter service] ****
-changed: [Al-x22-1]
 changed: [Al-x22-2]
+changed: [Al-x22-1]
 
 PLAY RECAP *********************************************************************
-Al-x22-1                   : ok=82   changed=69   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+Al-x22-1                   : ok=82   changed=70   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
 Al-x22-2                   : ok=82   changed=70   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
 Al-x22-3                   : ok=83   changed=70   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
@@ -6530,59 +6529,59 @@ ok: [Al-x22-3]
 PLAY [Init] ********************************************************************
 
 TASK [init : Update APT cache] *************************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 
 TASK [init : Install certificates] *********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [node_exporter : Install node_exporters] **********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [node_exporter : Upload prometheus node exporter var conf] ****************
-ok: [Al-x22-1]
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [node_exporter : Ensure node_exporters is always started please] **********
-ok: [Al-x22-2]
-ok: [Al-x22-1]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [backup : Add the user 'backup' with a specific uid and a primary group of 'admin'] ***
-ok: [Al-x22-1]
 ok: [Al-x22-3]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [backup : Create a 2048-bit SSH key for user backup] **********************
+ok: [Al-x22-2]
 ok: [Al-x22-1]
 ok: [Al-x22-3]
-ok: [Al-x22-2]
 
 TASK [backup : Template a file to /home/backup/.ssh/known_hosts] ***************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 
 TASK [backup : Ensure path to mysql backup exists] *****************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [backup : Ensure path to backup restore exists] ***************************
-ok: [Al-x22-3]
 ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-3]
 
 TASK [backup : Install Duplicity] **********************************************
-ok: [Al-x22-1]
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 PLAY [Prometheus] **************************************************************
 
@@ -6601,24 +6600,24 @@ ok: [Al-x22-3]
 PLAY [Web Servers] *************************************************************
 
 TASK [nginx : Update the repository cache and update package "nginx" to latest version using default release squeeze-backport] ***
-ok: [Al-x22-1]
 ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [nginx : Ensure nginx is always started please] ***************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [nginx : Nginx default configuration] *************************************
+ok: [Al-x22-2]
 ok: [Al-x22-1]
 ok: [Al-x22-3]
-ok: [Al-x22-2]
 
 TASK [nginx_exporter : Install nginx exporter] *********************************
-ok: [Al-x22-1]
-ok: [Al-x22-3]
 ok: [Al-x22-2]
+ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [nginx_exporter : Ensure nginx exporter is always started please] *********
 ok: [Al-x22-1]
@@ -6626,26 +6625,26 @@ ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [nginx_exporter : Upload prometheus-nginx-exporter configuration] *********
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 
 PLAY [DNS Bind] ****************************************************************
 
 TASK [bind : Install Bind9] ****************************************************
-ok: [Al-x22-1]
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [bind : Bind is started] **************************************************
 ok: [Al-x22-3]
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [bind : Upload bind9 configuration] ***************************************
 ok: [Al-x22-3]
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [bind : Upload bind9 local configuration] *********************************
 ok: [Al-x22-3]
@@ -6663,9 +6662,9 @@ skipping: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [bind_exporter : Install bind_exporter] ***********************************
-ok: [Al-x22-1]
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [bind_exporter : Upload prometheus bind exporter var conf] ****************
 ok: [Al-x22-3]
@@ -6703,36 +6702,36 @@ ok: [Al-x22-3] => (item={'key': 'web3', 'value': 'Al-x22-3'})
 PLAY [Resolve] *****************************************************************
 
 TASK [dns_change : Disable systemd-resolved] ***********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
 
 TASK [dns_change : Update resolv.conf] *****************************************
+ok: [Al-x22-3]
 ok: [Al-x22-1]
 ok: [Al-x22-2]
-ok: [Al-x22-3]
 
 PLAY [Database server] *********************************************************
 
 TASK [mysql : Add mysql to server] *********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : Copy file override.cnf] ******************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : Ensure sql is always started please] *****************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : Add python3-pymysql because it is required] **********************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : MySQL database] **************************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : MySQL user for agama] ********************************************
 ok: [Al-x22-2]
@@ -6751,12 +6750,12 @@ ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [mysql_exporter : Upload prometheus mysqld cnf configuration] *************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_exporter : Install mysql_exporters] ********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_exporter : Change file ownership, group and permissions] ***********
 ok: [Al-x22-1]
@@ -6767,8 +6766,8 @@ ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [mysql_exporter : Upload prometheus-mysqld-exporter configuration] ********
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_backup : Ensure path to mysql backup exists] ***********************
 ok: [Al-x22-1]
@@ -6779,22 +6778,22 @@ ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [mysql_backup : Upload backup-mysql configuration] ************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_backup : Change file ownership, group and permissions] *************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_backup : Upload cron backup-mysql] *********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 PLAY [Rsyslog Remote Log] ******************************************************
 
 TASK [rsyslog : Add Telegraf rsyslog conf file] ********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 
 PLAY [InfluxDB] ****************************************************************
@@ -6874,9 +6873,9 @@ ok: [Al-x22-3]
 PLAY [Docker] ******************************************************************
 
 TASK [docker : Install docker] *************************************************
-ok: [Al-x22-1]
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [docker : Docker is started] **********************************************
 ok: [Al-x22-1]
@@ -6910,50 +6909,50 @@ ok: [Al-x22-3]
 PLAY [Agama Server] ************************************************************
 
 TASK [agama : Agama Doker directory /opt/agama] ********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [agama : Install agama.py and agama raw image in docker /opt dir] *********
-ok: [Al-x22-1] => (item=agama.py)
 ok: [Al-x22-2] => (item=agama.py)
-ok: [Al-x22-1] => (item=Dockerfile)
+ok: [Al-x22-1] => (item=agama.py)
 ok: [Al-x22-2] => (item=Dockerfile)
+ok: [Al-x22-1] => (item=Dockerfile)
 
 TASK [agama : Build agama image] ***********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [agama : Add Agama to Docker provisioning] ********************************
-ok: [Al-x22-1] => (item=0)
 ok: [Al-x22-2] => (item=0)
-ok: [Al-x22-1] => (item=1)
+ok: [Al-x22-1] => (item=0)
 ok: [Al-x22-2] => (item=1)
+ok: [Al-x22-1] => (item=1)
 
 PLAY [Haproxy Server] **********************************************************
 
 TASK [haproxy : Install haproxy] ***********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [haproxy : Upload haproxy configuration] **********************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [haproxy : haproxy is started] ********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [haproxy_exporter : Install haproxy exporter] *****************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [haproxy_exporter : Upload haproxy exporter configuration] ****************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [haproxy_exporter : haproxy exporter is started] **************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived : Add Keepalived service] *************************************
 ok: [Al-x22-2]
@@ -6964,24 +6963,24 @@ ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [keepalived : Upload keepalived configuration] ****************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived : keepalived is started] **************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived_exporter : Download keepalived exporter] **********************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived_exporter : Extract Keepalived exporter from tar.gz file] ******
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived_exporter : Add keepalived exporter Service] *******************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived_exporter : Just force systemd to reread configs (2.4 and above)] ***
 ok: [Al-x22-1]
@@ -6999,17 +6998,17 @@ Al-x22-3                   : ok=69   changed=0    unreachable=0    failed=0    s
 + ansible all -b -m reboot -a test_command=uptime
 Al-x22-3 | CHANGED => {
     "changed": true,
-    "elapsed": 34,
+    "elapsed": 40,
     "rebooted": true
 }
 Al-x22-2 | CHANGED => {
     "changed": true,
-    "elapsed": 46,
+    "elapsed": 47,
     "rebooted": true
 }
 Al-x22-1 | CHANGED => {
     "changed": true,
-    "elapsed": 46,
+    "elapsed": 49,
     "rebooted": true
 }
 + ansible-playbook infra.yaml --diff
@@ -7018,30 +7017,30 @@ PLAY [Setup] *******************************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [Al-x22-3]
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 PLAY [Init] ********************************************************************
 
 TASK [init : Update APT cache] *************************************************
-ok: [Al-x22-2]
-ok: [Al-x22-1]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [init : Install certificates] *********************************************
-ok: [Al-x22-2]
-ok: [Al-x22-1]
 ok: [Al-x22-3]
+ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [node_exporter : Install node_exporters] **********************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [node_exporter : Upload prometheus node exporter var conf] ****************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
 
 TASK [node_exporter : Ensure node_exporters is always started please] **********
 ok: [Al-x22-1]
@@ -7049,14 +7048,14 @@ ok: [Al-x22-3]
 ok: [Al-x22-2]
 
 TASK [backup : Add the user 'backup' with a specific uid and a primary group of 'admin'] ***
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 ok: [Al-x22-2]
-ok: [Al-x22-1]
 
 TASK [backup : Create a 2048-bit SSH key for user backup] **********************
-ok: [Al-x22-3]
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
+ok: [Al-x22-3]
 
 TASK [backup : Template a file to /home/backup/.ssh/known_hosts] ***************
 ok: [Al-x22-1]
@@ -7069,13 +7068,13 @@ ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [backup : Ensure path to backup restore exists] ***************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 
 TASK [backup : Install Duplicity] **********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 
 PLAY [Prometheus] **************************************************************
@@ -7100,8 +7099,8 @@ ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [nginx : Ensure nginx is always started please] ***************************
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [nginx : Nginx default configuration] *************************************
@@ -7110,9 +7109,9 @@ ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [nginx_exporter : Install nginx exporter] *********************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
 
 TASK [nginx_exporter : Ensure nginx exporter is always started please] *********
 ok: [Al-x22-1]
@@ -7128,18 +7127,18 @@ PLAY [DNS Bind] ****************************************************************
 
 TASK [bind : Install Bind9] ****************************************************
 ok: [Al-x22-1]
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
 
 TASK [bind : Bind is started] **************************************************
 ok: [Al-x22-1]
-ok: [Al-x22-2]
 ok: [Al-x22-3]
+ok: [Al-x22-2]
 
 TASK [bind : Upload bind9 configuration] ***************************************
+ok: [Al-x22-3]
 ok: [Al-x22-1]
 ok: [Al-x22-2]
-ok: [Al-x22-3]
 
 TASK [bind : Upload bind9 local configuration] *********************************
 ok: [Al-x22-3]
@@ -7157,19 +7156,19 @@ skipping: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [bind_exporter : Install bind_exporter] ***********************************
+ok: [Al-x22-3]
 ok: [Al-x22-1]
 ok: [Al-x22-2]
-ok: [Al-x22-3]
 
 TASK [bind_exporter : Upload prometheus bind exporter var conf] ****************
-ok: [Al-x22-3]
 ok: [Al-x22-1]
+ok: [Al-x22-3]
 ok: [Al-x22-2]
 
 TASK [bind_exporter : Ensure bind_exporters is always started please] **********
-ok: [Al-x22-1]
 ok: [Al-x22-3]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 PLAY [DNS Records] *************************************************************
 
@@ -7202,8 +7201,8 @@ ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [dns_change : Update resolv.conf] *****************************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 PLAY [Database server] *********************************************************
@@ -7213,12 +7212,12 @@ ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [mysql : Copy file override.cnf] ******************************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [mysql : Ensure sql is always started please] *****************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : Add python3-pymysql because it is required] **********************
 ok: [Al-x22-2]
@@ -7229,28 +7228,28 @@ ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [mysql : MySQL user for agama] ********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : MySQL user for Exporter] *****************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : MySQL user for Replication] **************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql : Add read only mode to secondary mysql server] ********************
 ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [mysql_exporter : Upload prometheus mysqld cnf configuration] *************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_exporter : Install mysql_exporters] ********************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [mysql_exporter : Change file ownership, group and permissions] ***********
 ok: [Al-x22-1]
@@ -7261,34 +7260,34 @@ ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [mysql_exporter : Upload prometheus-mysqld-exporter configuration] ********
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_backup : Ensure path to mysql backup exists] ***********************
 ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [mysql_backup : MySQL user for backup] ************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [mysql_backup : Upload backup-mysql configuration] ************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 TASK [mysql_backup : Change file ownership, group and permissions] *************
 ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [mysql_backup : Upload cron backup-mysql] *********************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 
 PLAY [Rsyslog Remote Log] ******************************************************
 
 TASK [rsyslog : Add Telegraf rsyslog conf file] ********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 ok: [Al-x22-3]
 
 PLAY [InfluxDB] ****************************************************************
@@ -7368,8 +7367,8 @@ ok: [Al-x22-3]
 PLAY [Docker] ******************************************************************
 
 TASK [docker : Install docker] *************************************************
-ok: [Al-x22-2]
 ok: [Al-x22-1]
+ok: [Al-x22-2]
 ok: [Al-x22-3]
 
 TASK [docker : Docker is started] **********************************************
@@ -7404,8 +7403,8 @@ ok: [Al-x22-3]
 PLAY [Agama Server] ************************************************************
 
 TASK [agama : Agama Doker directory /opt/agama] ********************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [agama : Install agama.py and agama raw image in docker /opt dir] *********
 ok: [Al-x22-2] => (item=agama.py)
@@ -7418,10 +7417,10 @@ ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [agama : Add Agama to Docker provisioning] ********************************
-ok: [Al-x22-2] => (item=0)
 ok: [Al-x22-1] => (item=0)
-ok: [Al-x22-2] => (item=1)
+ok: [Al-x22-2] => (item=0)
 ok: [Al-x22-1] => (item=1)
+ok: [Al-x22-2] => (item=1)
 
 PLAY [Haproxy Server] **********************************************************
 
@@ -7434,16 +7433,16 @@ ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [haproxy : haproxy is started] ********************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [haproxy_exporter : Install haproxy exporter] *****************************
 ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [haproxy_exporter : Upload haproxy exporter configuration] ****************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [haproxy_exporter : haproxy exporter is started] **************************
 ok: [Al-x22-1]
@@ -7454,16 +7453,16 @@ ok: [Al-x22-2]
 ok: [Al-x22-1]
 
 TASK [keepalived : Upload keepalived configuration] ****************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived : Upload keepalived configuration] ****************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived : keepalived is started] **************************************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 TASK [keepalived_exporter : Download keepalived exporter] **********************
 ok: [Al-x22-2]
@@ -7482,8 +7481,8 @@ ok: [Al-x22-1]
 ok: [Al-x22-2]
 
 TASK [keepalived_exporter : Start keepalived uncodnitionally] ******************
-ok: [Al-x22-1]
 ok: [Al-x22-2]
+ok: [Al-x22-1]
 
 PLAY RECAP *********************************************************************
 Al-x22-1                   : ok=68   changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
@@ -7491,4 +7490,4 @@ Al-x22-2                   : ok=68   changed=0    unreachable=0    failed=0    s
 Al-x22-3                   : ok=69   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 + date
-L 10 dets  2022 22:04:32 EET
+P 11 dets  2022 17:06:56 EET

@@ -17,7 +17,7 @@ This document provides backup information concerning the IT infrastructure devel
 Backups performed are incremental. One full backup is made every Sunday at the specified time below. Every day, except for Sunday, incremental backups are made.
 ```sh
 Backup update frequency: 24h
-Backup creation time: 10:00pm UTC
+Backup creation time: 12:00am UTC
 ```
 
 ## Versioning and Retention
