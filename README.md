@@ -12,6 +12,8 @@ Repository for IT Infrastructure
 - journalctl -u 'service' --no-pager
 - cat 'file_to_filter'.conf |grep -v  "^$\|^#\|^  #"
 
+- nginx -t
+
 ### Special Combo for web
 - service service status
 - sudo ss -ntlp |grep Id of service
@@ -25,8 +27,8 @@ Repository for IT Infrastructure
 
 // Reloads Config file for zones
 - sudo rndc reload 
-- named-checonf // To check syntax of bind9
-- named_checkzone // For zone files
+- named-checonf // To check syntax of bind9: sudo named-checkconf /etc/bind/named.conf.local
+- named_checkzone // For zone files: sudo named-checkzone alba.pz /var/cache/bind/db.alba.pz.j2
 
 - dig AXFR alba.pz @192.168.42.94
 

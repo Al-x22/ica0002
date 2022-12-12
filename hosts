@@ -1,6 +1,6 @@
-Al-x22-1 ansible_host=193.40.156.67 ansible_port=43322 ansible_ssh_user=ubuntu
-Al-x22-2 ansible_host=193.40.156.67 ansible_port=29022 ansible_ssh_user=ubuntu
-Al-x22-3 ansible_host=193.40.156.67 ansible_port=45222 ansible_ssh_user=ubuntu
+Al-x22-1 ansible_host=193.40.156.67 ansible_port=37122 ansible_ssh_user=ubuntu
+Al-x22-2 ansible_host=193.40.156.67 ansible_port=29322 ansible_ssh_user=ubuntu
+Al-x22-3 ansible_host=193.40.156.67 ansible_port=36322 ansible_ssh_user=ubuntu
 
 [web_servers]
 Al-x22-1

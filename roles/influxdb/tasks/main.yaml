@@ -44,7 +44,7 @@
     src: telegraf.conf
   notify: restart telegraf
     
-- name: Ensure influxdb is always started please
+- name: Ensure telegraf is always started please
   ansible.builtin.service:
     name: telegraf
     enabled: yes
